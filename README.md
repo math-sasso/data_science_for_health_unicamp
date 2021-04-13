@@ -11,25 +11,25 @@ data_science_for_health_unicamp
 
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação [*Ciência e Visualização de Dados em Saúde*](https://github.com/datasci4health/home), oferecida no primeiro semestre de 2021, na Unicamp.
 
-> Incluir nome RA e foco de especialização de cada membro do grupo. Os grupos devem ter no máximo 5 integrantes e devem contar com pelo menos um aluno da área da saúde e um aluno de área afim à Computação (Ex.: Computação, Elétrica...)
-> |Nome  | RA | Especialização|
-> |--|--|--|
-> | Matheus Gustavo Alves Sasso  | 158257  | Computação|
-> | Schaffer  |   | Computação|
-> | Maria Estela  |   | Computação|
-> | Kedma  |   | Saúde |
-
+|Nome  | RA | Especialização|
+|--|--|--|
+| Matheus Gustavo Alves Sasso  | 158257  | Computação|
+| Giancarlo Schaffer Torres Junior  | 263890  | Computação|
+| Maria Estela de Oliveira Paiva  |  263885 | Computação|
+| Kedma Teixeira Montedori  | 098182  | Saúde |
 
 # Descrição Resumida do Projeto
-> Descrição do tema do projeto, incluindo motivação e contexto gerador.
-> 
-> Link para vídeo de apresentação da proposta do projeto (máximo 3 minutos).
+
+No Brasil há recém nascidos que possuem problemas de malformação relacionados a problemas de saúde pública, sendo que em cada estado/microrregião estes problemas estão relacionados à deficiências diferentes dentro do sistema de gestão de políticas públicas.
+
+O Ministério da Saúde considera que crianças de risco apresentam pelo menos um destes critérios: baixo peso ao nascer (<2500g); menos de 37 semanas de idade gestacional (IG), asfixia grave (Apgar < 7 no quinto minuto de vida); internamento ou intercorrência na maternidade; mãe adolescente (< 18 anos), mãe com baixa instrução (< 8 anos de estudo), residência em área de risco; história de morte de crianças (< 5 anos) na família. Entre estes é destacado o baixo peso ao nascer (BPN) e a prematuridade1. 
+
 
 # Perguntas de Pesquisa
 > Perguntas de pesquisa que o projeto pretende responder ou hipóteses a serem avaliadas, enunciadas de maneira objetiva e verificável.
 
 # Bases de Dados
-> Elencar bases de dados candidatas a serem utilizadas no projeto.
+A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019.
 
 # Metodologia
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar, tais como: aprendizagem de máquina, análise de redes, análise estatística, ou integração de uma ou mais técnicas. Para a primeira entrega, descreva de maneira mais genérica que tipo de abordagem seu grupo pretende realizar.
