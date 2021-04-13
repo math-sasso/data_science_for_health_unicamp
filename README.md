@@ -1,47 +1,69 @@
-data_science_for_health_unicamp
-==============================
-
 # data_science_for_health_unicamp
 
+# Projeto `Perfil de morbidade e mortalidade de recém-nascido com anomalias congênitas no Brasil entre 2005 a 2019.`
 
-# Projeto `<Título em Português>`
 # Project `<Title in English>`
 
 # Apresentação
 
-O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação [*Ciência e Visualização de Dados em Saúde*](https://github.com/datasci4health/home), oferecida no primeiro semestre de 2021, na Unicamp.
+O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação [_Ciência e Visualização de Dados em Saúde_](https://github.com/datasci4health/home), oferecida no primeiro semestre de 2021, na Unicamp.
 
-|Nome  | RA | Especialização|
-|--|--|--|
-| Matheus Gustavo Alves Sasso  | 158257  | Computação|
-| Giancarlo Schaffer Torres Junior  | 263890  | Computação|
-| Maria Estela de Oliveira Paiva  |  263885 | Computação|
-| Kedma Teixeira Montedori  | 098182  | Saúde |
+| Nome                             | RA     | Especialização |
+| -------------------------------- | ------ | -------------- |
+| Matheus Gustavo Alves Sasso      | 158257 | Computação     |
+| Giancarlo Schaffer Torres Junior | 263890 | Computação     |
+| Maria Estela de Oliveira Paiva   | 263885 | Computação     |
+| Kedma Teixeira Montedori         | 098182 | Saúde          |
 
 # Descrição Resumida do Projeto
 
-No Brasil há recém nascidos que possuem problemas de malformação relacionados a problemas de saúde pública, sendo que em cada estado/microrregião estes problemas estão relacionados à deficiências diferentes dentro do sistema de gestão de políticas públicas.
+Interface a qual seja possível verificar as causas de disfunções de malformação de nascidos vivos podendo ser consultadas por estado/microrregião.
 
-O Ministério da Saúde considera que crianças de risco apresentam pelo menos um destes critérios: baixo peso ao nascer (<2500g); menos de 37 semanas de idade gestacional (IG), asfixia grave (Apgar < 7 no quinto minuto de vida); internamento ou intercorrência na maternidade; mãe adolescente (< 18 anos), mãe com baixa instrução (< 8 anos de estudo), residência em área de risco; história de morte de crianças (< 5 anos) na família. Entre estes é destacado o baixo peso ao nascer (BPN) e a prematuridade1. 
+Sistema de inteligência artificial que retornará o impacto de cada variável de entrada para que seja predita uma classe de anomalia na saída.
 
+[_Vídeo de Apresentação_](https://youtu.be/DN1tSBkntmY)
 
 # Perguntas de Pesquisa
-> Perguntas de pesquisa que o projeto pretende responder ou hipóteses a serem avaliadas, enunciadas de maneira objetiva e verificável.
+
+Qual o perfil de morbidade e mortalidade dos recém-nascidos com anomalias congênitas de acordo com os estados brasileiros no período entre 2005 a 2019?
 
 # Bases de Dados
+
 A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019.
 
 # Metodologia
-> Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar, tais como: aprendizagem de máquina, análise de redes, análise estatística, ou integração de uma ou mais técnicas. Para a primeira entrega, descreva de maneira mais genérica que tipo de abordagem seu grupo pretende realizar.
+
+Análise descritiva dos dados presentes no banco dos SINASC investigando as correlações e projeções.
 
 # Ferramentas
-> Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+Python e libs (Pysus, pandas…) para tratar dados e criar modelo, React para desenvolver interface front-end, Fast API.
 
 # Cronograma
-> Proposta de cronograma. Procure estimar quantas semanas serão gastas para cada etapa do projeto.
+
+| Etapas                                                  | Semanas   |
+| ------------------------------------------------------- | --------- |
+| Seleção inicial dos dados e Pré-processamento dos dados | 4 semanas |
+| Data mining                                             | 3 semanas |
+| Interface web                                           | 2 semanas |
+| Criação de apis                                         | 1 semana  |
+| Integração com interface e deploy                       | 1 semana  |
+| Relatório                                               | 3 semanas |
+| Testes e correções                                      | 2 semanas |
+
+|                                                         | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
+| ------------------------------------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Seleção inicial dos dados e Pré-processamento dos dados | X   | X   | X   | X   |     |     |     |     |     |     |
+| Data mining                                             |     |     |     |     | X   | X   | X   |     |     |     |
+| Interface web                                           |     |     |     |     | X   | X   |     |     |     |     |
+| Criação de apis                                         |     |     |     |     |     |     | X   |     |     |     |
+| Integração com interface e deploy                       |     |     |     |     |     |     |     | X   |     |     |
+| Relatório                                               |     |     |     | X   |     |     |     | X   |     | X   |
+| Testes e correções                                      |     |     |     |     |     |     |     |     | X   | X   |
 
 # Project Organization
-------------
+
+---
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -88,7 +110,6 @@ A base de dados utilizada no problema em questão é o SINASC do datasus, o qual
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
---------
+---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
