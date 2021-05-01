@@ -115,3 +115,15 @@ Python e libs (Pysus, pandas…) para tratar dados e criar modelo, React para de
 ---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+## Dockerfile
+
+Buildar docker image
+```bash
+sudo docker build -t ds_health_img .
+```
+
+Rodando o dockerfile
+```bash
+sudo docker run -it  --name ds_health -v $(pwd):/app --gpus=all ds_health_img
+```
