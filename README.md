@@ -125,5 +125,5 @@ sudo docker build -t ds_health_img .
 
 Rodando o dockerfile
 ```bash
-sudo docker run -it  --name ds_health -v $(pwd):/app --gpus=all ds_health_img
+sudo docker run -it -p 8080:8080 --name ds_health -v $(pwd):/app ds_health_img
 ```
