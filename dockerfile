@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     git \
     mercurial \
     pepperflashplugin-nonfree \
+    libffi-dev \
  && rm -rf /var/lib/apt/lists/*
 
 # Create a working directory

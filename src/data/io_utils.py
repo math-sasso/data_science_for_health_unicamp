@@ -27,17 +27,32 @@ class IO_Utils(object):
         return txt_result
 
     def read_cnv_file_as_df(self,cnv_file_path,columns=None,special_pasing_method=None):
-        with open(cnv_file_path) as f:
+        with open(cnv_file_path,errors="ignore") as f:
             txt_result = f.read().split("\n")
             if special_pasing_method:
                 list_df_rows = special_pasing_method(txt_result)
             else:
                 list_df_rows =[list(filter(None, row.split('  '))) for row in txt_result]
-            list_df_rows = list_df_rows[1:]
+            list_df_rows = list_df_rows[1:-1]
             list_df_rows = [x for x in list_df_rows if x]
             list_df_rows = [[elem.strip() for elem in row] for row in list_df_rows]
             _ = [l.pop(0) for l in list_df_rows]
-            if any(len(list_df_rows[0])!= len(i) for i in list_df_rows):
-                raise IOError("O arquivo CNV não pode ser transformado en dataframe pela função padrão. Por favor, passe a sua próprio função para separálo em listas de listas")
+            # if any(len(list_df_rows[0])!= len(i) for i in list_df_rows):
             df = pd.DataFrame(list_df_rows,columns=None)
         return df
+
+
+def read_cnv_file_as_df(cnv_file_path,columns=None,special_pasing_method=None):
+    with open(cnv_file_path,errors="ignore") as f:
+        txt_result = f.read().split("\n")
+        if special_pasing_method:
+            list_df_rows = special_pasing_method(txt_result)
+        else:
+            list_df_rows =[list(filter(None, row.split('  '))) for row in txt_result]
+        list_df_rows = list_df_rows[1:-1]
+        list_df_rows = [x for x in list_df_rows if x]
+        list_df_rows = [[elem.strip() for elem in row] for row in list_df_rows]
+        _ = [l.pop(0) for l in list_df_rows]
+        # if any(len(list_df_rows[0])!= len(i) for i in list_df_rows):
+        df = pd.DataFrame(list_df_rows,columns=None)
+    return df
