@@ -35,10 +35,8 @@ class Retriever(object):
             'SE': 'Sergipe',
             'TO': 'Tocantins'
         }
-
-        self.wordk_dir = os.getcwd().replace('= ','')
-        self.data_dir = os.path.join(self.wordk_dir,'data')
-
+        self.wordk_dir = os.path.abspath(os.getcwd()).replace('= ','')
+        self.data_dir = os.path.join(self.wordk_dir,'..','..','data')
         self.io_utils = IO_Utils()
 
 
@@ -80,10 +78,14 @@ class SINASC_Retriever(Retriever):
             for year in years:
                 df = download(state, year)
                 #df = download('SE', 2015)
-                json_result['data']['state']['year'] = df
+                #json_result['data']['state']['year'] = df
+                year_str = str(year)
+                file_path = os.path.join(self.data_dir,'processed',f'{state}_{year_str}.csv')
+                compression_opts = dict(method='zip', archive_name=file_path)  
+                df.to_csv(file_path, index=False, compression=compression_opts)
 
-                self.io_utils.read_json()
-                self.io_utils.save_json()
+                # self.io_utils.read_json()
+                #self.io_utils.save_json()
 
 
         
@@ -143,7 +145,7 @@ class SINASC_Retriever(Retriever):
         'MESPRENAT':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'MEGEST.CNV')),\
         'TPAPRESENT':'Tipo de apresentação do RN. Valores: 1– Cefálico; 2– Pélvica oupodálica; 3– Transversa; 9– Ignorado',\
         'STTRABPART':'Trabalho de parto induzido? Valores: 1– Sim; 2– Não; 3– Não se aplica; 9– Ignorado',\
-        'STCESPARTO':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'STPARTO.CNV ')),\
+        'STCESPARTO':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'STPARTO.CNV')),\
         'TPNASCASSI':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'TPASSIST.CNV')),\
         'TPFUNCRESP':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'TPFUNC.CNV')),\
         'TPDOCRESP':'Tipo do documento do responsável. Valores: 1‐CNES; 2‐CRM; 3‐COREN; 4‐RG; 5‐CPF',\
@@ -151,10 +153,10 @@ class SINASC_Retriever(Retriever):
         'ESCMAEAGR1':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'ESCAGR1.CNV')),\
         'STDNEPIDEM':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'DNNOVA.CNV')),\
         'STDNNOVA':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'DNNOVA.CNV')),\
-        'CODPAISRES':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'PAISES.CNV.CNV')),\
+        'CODPAISRES':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'PAISES.CNV')),\
         'TPROBSON':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'ROBSON.CNV')),\
-        'PARIDADE':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'.CNV')),\
-        'KOTELCHUCK':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'.CNV')),\
+        #'PARIDADE':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'.CNV')),\
+        #'KOTELCHUCK':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'.CNV')),\
         # 'DTRECEBIM':self.io_utils.read_cnv_file_as_df(os.path.join(tabdn_dir,'ANO.CNV')),\
         # 'DIFDATA':'Diferença entre a data de óbito e data do recebimento originalda DO ([DTNASC] – [DTRECORIG]) ',\
         # 'DTRECORIGA':'Data do 1º recebimento do lote, dada pelo Sisnet.',

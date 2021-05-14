@@ -1,1 +1,2 @@
-TODO: 
+TODO: Revisitar e verificar qual coluna se manterá
+TODO: Criar dicionários como código do ibge:cidade

@@ -60,6 +60,8 @@ ENV DATA_DIR = "/app/data/"
 
 EXPOSE 8080
 
+USER $NB_UID
+
 # Entrypoint
 ENTRYPOINT ["/bin/bash"]
 CMD []

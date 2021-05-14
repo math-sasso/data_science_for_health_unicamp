@@ -29,15 +29,17 @@ class Preprocessor(object):
         raise NotImplementedError()
         return df
 
-    def treat_datetine_columns():
+    def treat_datetime_columns():
         raise NotImplementedError()
         return df
 
     def define_categorical_and_continuous_columns(self,df,column_type_dict):
         raise NotImplementedError()
         return df
-    def convert_missing_values_to_nan(self,df,columns_nan_value_dict:):
+
+    def convert_missing_values_to_nan(self,df,columns_nan_value_dict):
         accepted_as_nan_values = [None]
+        df.isnull().any(axis=1)
         raise NotImplementedError()
         return df
 
