@@ -17,19 +17,33 @@ https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a
 
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
+from sklearn.preprocessing import MinMaxScaler
 
-class Preprocessor(object):
+class Feature_Engineering(object):
     """ 
     Class with preprocessments to apply in dataframe
     """
     def __init__(self):
         super().__init__()
     
+    def identify_num_values(self):
+        """
+        Set values that not correspond to a valid as np.NAN
+        """
+
+
+    def encode_anomalie(self,df,anomalies_column,amolalie_code = 'Q909'):
+        #Q909 - Sindrome de Down
+        df_copy = df.copy()
+        df_copy[anomalies_column] = df_copy[anomalies_column].fillna('')
+        df_copy[amolalie_code] = df_copy[anomalies_column].str.contains(amolalie_code).astype(int)
+        return df_copy
+
     def balance_dataset(self,df):
         raise NotImplementedError()
         return df
 
-    def treat_datetime_columns():
+    def convert_tabulars_to_timeseries(self):
         raise NotImplementedError()
         return df
 
@@ -40,16 +54,25 @@ class Preprocessor(object):
     def convert_missing_values_to_nan(self,df,columns_nan_value_dict):
         accepted_as_nan_values = [None]
         df.isnull().any(axis=1)
-        raise NotImplementedError()
         return df
 
     def one_hot_encode_columns(self,df,column):
-        raise NotImplementedError()
-        return df
+        df_copy = df.copy()
+        df_copy = pd.get_dummies(df_copy[column])
+        df_copy = df_copy.drop(column,axis = 1)
+        # Join the encoded df
+        df_copy = df_copy.join(one_hot_type)
+        return df_copy
 
-    def normalize_data(self,df,normalization_strategy):
-        raise NotImplementedError()
-        return df
+    def fit_normalizer(df_train,normalization_strategy):
+        if 'min_max_scaler':
+            scaler = MinMaxScaler()
+            scaler.fit(df_train)
+        return scaler
+
+    def normalize_data(self,df,scaler):
+        df_norm = scaler.transform(df)
+        return df_norm
 
     def convert_column_to_categorical(self,df,column):
         df[f'{column}_cat'] = df[column] 

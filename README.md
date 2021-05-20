@@ -33,6 +33,18 @@ Qual o perfil de morbidade e mortalidade dos recém-nascidos com anomalias cong�
 
 A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019.
 
+## Bases Estudadas mas Não Adotadas
+
+Base de Dados | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre a base.
+
+## Bases Estudadas e Adotadas
+
+Base de Dados | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre a base.
+
 # Metodologia
 
 Análise descritiva dos dados presentes no banco dos SINASC investigando as correlações e projeções.

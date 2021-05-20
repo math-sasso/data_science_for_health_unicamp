@@ -1,2 +1,13 @@
 TODO: Revisitar e verificar qual coluna se manterá
 TODO: Criar dicionários como código do ibge:cidade
+
+
+
+#TODO: Tela1: Exploração dos gráficos
+#TODO: Tela2: Visualização das feature selections
+#TODO: Tela3: Resultados do nosso modelo específico
+
+
+#Criar As classes e chamar no notebook
+# Setting up do mlflow
+# Tem que lembrar de balancear os treinamentos nas métricas

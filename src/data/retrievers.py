@@ -2,7 +2,7 @@ import os
 import numpy as np
 from typing import List
 from pysus.online_data.sinasc import download
-from io_utils import IO_Utils
+from ..io_utils import IO_Utils
 
 class Retriever(object):
     def __init__(self):
@@ -80,14 +80,19 @@ class SINASC_Retriever(Retriever):
                 #df = download('SE', 2015)
                 #json_result['data']['state']['year'] = df
                 year_str = str(year)
-                file_path = os.path.join(self.data_dir,'processed',f'{state}_{year_str}.csv')
-                compression_opts = dict(method='zip', archive_name=file_path)  
-                df.to_csv(file_path, index=False, compression=compression_opts)
+                file_path = os.path.join(self.data_dir,'processed',f'{state}_{year_str}')
+                compression_opts = dict(method='zip', archive_name=f'{file_path}.csv')  
+                df.to_csv(f'{file_path}.zip', index=False, compression=compression_opts)
 
                 # self.io_utils.read_json()
                 #self.io_utils.save_json()
 
 
+    def _get_all_column_variables_descriptions_dicts(self):
+        descriptions = {
+            'CODMUNNASC': {}
+        
+        }
         
     def _get_all_column_variables_descriptions(self):
         #codigos municipios

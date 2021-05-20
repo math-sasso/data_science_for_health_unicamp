@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import seaborn as sns
-from scipy.stats import kendalltau, pearsonr, spearmanr
 
 class Explorer(object):
     """ 
@@ -23,68 +22,6 @@ class StatisticalExplorer(object):
 
     def descripe_dataframe(self,df):
         raise NotImplementedError()
-    
-    def get_correlation_matrix(self,df,method):
-
-        accpedted_correlations = ['pearson','spearman','kendall']
-        if method not in accpedted_correlations:
-            raise ValueError(f"O método deve ser um entre {accpedted_correlations}")
-
-        if method == 'pearson':
-            method_k = self._pearsonr_rval
-            method_p = self._pearsonr_pval
-        elif method == 'spearman':
-            method_k = self._spearmanr_rval
-            method_p = self._spearmanr_pval 
-        elif method == 'kendall':
-            method_k = self._kendall_rval
-            method_p = self._kendall_pval
-
-        df_k = df.corr(method=method_k).style.applymap(self._color_k)
-        df_p = df.corr(method=method_p).style.applymap(self._color_p)
-    
-        return {'df_k':df_k,'df_p':df_p}
-
-    def _kendall_rval(self,x,y):
-        return np.round(kendalltau(x,y)[0],6)
-
-    def _pearsonr_rval(self,x,y):
-        return np.round(pearsonr(x,y)[0],6)
-
-    def _spearmanr_rval(self,x,y):
-        return np.round(spearmanr(x,y)[0],6)
-
-    def _kendall_pval(self,x,y):
-        return np.round(kendalltau(x,y)[1],6)
-
-    def _pearsonr_pval(self,x,y):
-        return np.round(pearsonr(x,y)[1],6)
-
-    def _spearmanr_pval(self,x,y):
-        return np.round(spearmanr(x,y)[1],6)
-    
-    def _color_k(self,value):
-        value = abs(value)
-        if value >=0.7 and  value <1:
-            color = 'blue'
-        elif value >=0.5 and value <0.7:
-            color = 'green'
-        elif value >=0.3 and value <0.5:
-            color = 'red'
-        else:
-            color = ''
-        return 'color: %s' % color
-    
-    def _color_p(self,value):
-        if value <=0.001:
-            color = 'blue'
-        elif value <=0.05 and value >0.001:
-            color = 'green'
-        elif value <=0.1 and value >0.05:
-            color = 'red'
-        else:
-            color = ''
-        return 'color: %s' % color
 
 class GraphExplorer(object):
     """ 
