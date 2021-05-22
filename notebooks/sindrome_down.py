@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from src.features.feature_selection import Feature_Selection
 from src.features.feature_engineering import Feature_Engineering
 from src.data.retrievers import SINASC_Retriever
+from src.io_utils import IO_Utils
 
 #Variáveis de Interesse
 target_anomalies = ['Q900','Q901','Q902','Q903','Q904','Q905','Q906','Q907','Q908','Q909']
@@ -17,19 +18,40 @@ target_years = list(range(2010,2020))
 target_states = ['SP']
 
 #Setting Paths
-root_dir = os.path.join(os.path.abspath(os.getcwd()).replace('= ',''))
-data_dir = os.path.join(root_dir,'data')
+data_dir = os.path.join(os.path.dirname(__file__),'..','data')
+processed_data_dir = os.path.join(data_dir,'processed')
 #sp_2019_path  = os.path.join(data_dir,'external','SINASC_DATA','SP','SP_2019.zip')
 
 # Creating helping classes instances
 retriever = SINASC_Retriever()
 fe = Feature_Engineering()
 fs = Feature_Selection()
+io_utils = IO_Utils()
+
+# Creating Dadasets (only once)
+# df_anomalies = retriever.extract_rows_anomalie(states=target_states,
+#                                                 years=target_years,
+#                                                 anomalie_codes=target_anomalies,
+#                                                 anomalies_present=True)
+# io_utils.save_df_zipped_csv(df=df_anomalies,dirpath=processed_data_dir,file_name='df_sindrome_down')
+# df_no_anomalies = retriever.extract_rows_anomalie(states=target_states,
+#                                                 years=target_years,
+#                                                 anomalie_codes=target_anomalies,
+#                                                 anomalies_present=False)
+
+# io_utils.save_df_zipped_csv(df=df_no_anomalies,dirpath=processed_data_dir,file_name='df_no_sindrome_down')
+# df_no_anomalies_cropped = df_no_anomalies.sample(frac=1)[:len(df_anomalies)]
+# io_utils.save_df_zipped_csv(df=df_no_anomalies,dirpath=processed_data_dir,file_name='df_no_anomalies_cropped')
+
+# Retrieving Datasets
+import pdb;pdb.set_trace()
+df_anomalies = pd.read_csv(os.path.join(processed_data_dir,'df_anomalies.zip'))
+df_no_anomalies_cropped = pd.read_csv(os.path.join(processed_data_dir,'df_no_anomalies_cropped.zip'))
 
 
-# Getting Data
+os.path.join(data_dir,'external','SINASC_DATA','SP')
 # Performing Feature Selection
-retriever.extract_rows_with_anomalie(states=target_states,years=target_years,anomalie_codes=target_anomalies)
+
 
 import pdb;pdb.set_trace()
 df = fe.special_read_csv(path = sp_2019_path)

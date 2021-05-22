@@ -31,6 +31,10 @@ class IO_Utils(object):
             txt_result = f.read().split("\n")
         return txt_result
 
+    def save_df_zipped_csv(self,df,dirpath,file_name):
+        compression_opts = dict(method='zip', archive_name=os.path.join(dirpath,f'{file_name}.csv'))  
+        df.to_csv(os.path.join(dirpath,f'{file_name}.zip'), index=False, compression=compression_opts)
+
     def read_cnv_file_as_df(self,cnv_file_path,columns=None,special_pasing_method=None):
         with open(cnv_file_path,errors="ignore") as f:
             txt_result = f.read().split("\n")
