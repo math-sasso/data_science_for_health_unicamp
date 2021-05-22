@@ -14,10 +14,15 @@ https://towardsdatascience.com/feature-engineering-for-machine-learning-3a5e293a
 """
 
 ##TODO: Fazer a classe preprocessing conter instancias de pequenas partes da etapa de pre processamento. Inputer, Feature Engineering, etc...
-
+import os
+import sys
+import pandas as pd
+import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from sklearn.preprocessing import MinMaxScaler
+from typing import List
+
 
 class Feature_Engineering(object):
     """ 
@@ -25,18 +30,18 @@ class Feature_Engineering(object):
     """
     def __init__(self):
         super().__init__()
-    
-    def identify_num_values(self):
-        """
-        Set values that not correspond to a valid as np.NAN
-        """
 
+    def _split_df_in_xy(self,df,target_column):
+        df_copy = df.copy()
+        X = df_copy.drop(target_column,axis = 1)
+        y = df_copy[target_column]
+        return X,y
 
-    def encode_anomalie(self,df,anomalies_column,amolalie_code = 'Q909'):
-        #Q909 - Sindrome de Down
+    def encode_anomalie(self,df,anomalies_column,anomalie_code = 'Q909'):
+        #Q909 Q900 - Sindrome de Down
         df_copy = df.copy()
         df_copy[anomalies_column] = df_copy[anomalies_column].fillna('')
-        df_copy[amolalie_code] = df_copy[anomalies_column].str.contains(amolalie_code).astype(int)
+        df_copy[anomalie_code] = df_copy[anomalies_column].str.contains(anomalie_code).astype(int)
         return df_copy
 
     def balance_dataset(self,df):
@@ -44,6 +49,7 @@ class Feature_Engineering(object):
         return df
 
     def convert_tabulars_to_timeseries(self):
+        # -> Colunas chave'DTNASC', 'HORANASC' ,'DTCADASTRO' , 'DIFDATA
         raise NotImplementedError()
         return df
 
@@ -58,20 +64,22 @@ class Feature_Engineering(object):
 
     def one_hot_encode_columns(self,df,column):
         df_copy = df.copy()
-        df_copy = pd.get_dummies(df_copy[column])
+        one_hot_encoded_column = pd.get_dummies(df_copy[column])
         df_copy = df_copy.drop(column,axis = 1)
         # Join the encoded df
-        df_copy = df_copy.join(one_hot_type)
+        df_copy = df_copy.join(one_hot_encoded_column)
         return df_copy
 
-    def fit_normalizer(df_train,normalization_strategy):
+    def fit_normalizer(self,df_train,normalization_strategy):
         if 'min_max_scaler':
             scaler = MinMaxScaler()
             scaler.fit(df_train)
         return scaler
 
     def normalize_data(self,df,scaler):
-        df_norm = scaler.transform(df)
+        cols = df.columns
+        norm_data = scaler.transform(df)
+        df_norm = pd.DataFrame(norm_data,columns=cols)
         return df_norm
 
     def convert_column_to_categorical(self,df,column):

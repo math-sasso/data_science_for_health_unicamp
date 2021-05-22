@@ -17,6 +17,11 @@ class IO_Utils(object):
             json_result = json.load(f)
         return json_result
     
+    def create_folder_structure(self,folder):
+        """ Create the comple folder structure if it does not exists """
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+            
     def save_json(self,destination_path,d,ensure_ascii=False,command='a'):
         with open(destination_path, command) as fp:
             json.dump(d, fp, ensure_ascii=ensure_ascii)

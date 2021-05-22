@@ -3,7 +3,7 @@ import pandas as pd
 import pdb
 import seaborn as sns
 import matplotlib.pyplot as plt
-import pymrmr
+#import pymrmr
 from scipy.stats import kendalltau, pearsonr, spearmanr
 from sklearn.feature_selection import SelectKBest, mutual_info_classif, chi2, f_classif, RFE
 import numpy as np
@@ -21,12 +21,6 @@ class Feature_Selection(object):
 
     def select_features(self,df,columns):
         raise NotImplementedError()
-
-    def _split_df_in_xy(self,df,target_column):
-        df_copy = df.copy()
-        X = df_copy.drop(target_column,axis = 1)
-        y = df_copy[target_column]
-        return X,y
 
     def get_missing_values_df(self,df):
         percent_missing = df.isnull().sum() * 100 / len(df)
@@ -54,15 +48,15 @@ class Feature_Selection(object):
         featureScores.columns = ['Feature','Score']
         return featureScores
                  
-    def get_mRMR_feature_scores(self,df,n_features_to_select):
-        # https://medium.com/subex-ai-labs/feature-selection-techniques-for-machine-learning-in-python-455dadcd3869
-        """
-        (Minimal Redundancy and Maximal Relevance)
-        Intuition: It selects the features, based on their relevancy with the target variable, as well as their redundancy with the other features.
-        """
-        selected_features = pymrmr.mRMR(df, 'MIQ',n_features_to_select)
-        return selected_features
-
+    # def get_mRMR_feature_scores(self,df,n_features_to_select):
+    #     # https://medium.com/subex-ai-labs/feature-selection-techniques-for-machine-learning-in-python-455dadcd3869
+    #     """
+    #     (Minimal Redundancy and Maximal Relevance)
+    #     Intuition: It selects the features, based on their relevancy with the target variable, as well as their redundancy with the other features.
+    #     """
+    #     selected_features = pymrmr.mRMR(df, 'MIQ',n_features_to_select)
+    #     return selected_features
+        
     def get_chisquare_feature_scores(self,df,target_column,n_features_to_select):
         """
         It calculates the correlation between the feature and target and selects the best k features according to their chi square score calculated using following chi square test.

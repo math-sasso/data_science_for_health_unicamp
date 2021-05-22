@@ -38,17 +38,9 @@ class Retriever(object):
         self.wordk_dir = os.path.abspath(os.getcwd()).replace('= ','')
         self.data_dir = os.path.join(self.wordk_dir,'..','..','data')
         self.io_utils = IO_Utils()
-
-
-class SINASC_Retriever(Retriever):
-    def __init__(self):
-        super().__init__()
-        self._columns_descriptions = self._get_all_column_variables_descriptions()
-        self.acceptable_years = np.arange(1999,2020)
-
-    def get_data(self,**kwargs):
+        self.acceptable_years = np.arange(2010,2020)
     
-        def check_inputs_erros(states,years):
+    def check_inputs_erros(self,states,years):
             if (type(years) != list) or not all(isinstance(i, int) for i in years):
                 raise AttributeError("O argumento years deve ser uma lista de inteiros")
             
@@ -60,6 +52,14 @@ class SINASC_Retriever(Retriever):
             
             if not set(states).issubset(self.states_brasil.keys()):
                 raise AttributeError(f"Todos os estados devem estar na lista: {list(self.states_brasil.keys())}")
+
+
+class SINASC_Retriever(Retriever):
+    def __init__(self):
+        super().__init__()
+        self._columns_descriptions = self._get_all_column_variables_descriptions()
+
+    def get_data(self,**kwargs):
        
         states = kwargs.get('states')
         years = kwargs.get('years')
@@ -70,30 +70,96 @@ class SINASC_Retriever(Retriever):
         years = list(set(years))
         
         #Checking Errors
-        check_inputs_erros(states,years)
+        self.check_inputs_erros(states,years)
 
-        #Creating Json
+        #Downloading Data
         json_result = self.io_utils.read_json(json_path) if json_path else {'metadata': {'column_descriptions':{}}}
         for state in states:
             for year in years:
-                df = download(state, year)
-                #df = download('SE', 2015)
-                #json_result['data']['state']['year'] = df
-                year_str = str(year)
-                file_path = os.path.join(self.data_dir,'processed',f'{state}_{year_str}')
-                compression_opts = dict(method='zip', archive_name=f'{file_path}.csv')  
-                df.to_csv(f'{file_path}.zip', index=False, compression=compression_opts)
+                dir_path = os.path.join(self.data_dir,'external','SINASC_DATA')
+                self.io_utils.create_folder_structure(folder=)
+                file_path = os.path.join(self.data_dir,'external','SINASC_DATA',f'{state}_{year_str}')
 
-                # self.io_utils.read_json()
-                #self.io_utils.save_json()
+                if not os.path.exists(folder):
+                    df = download(state, year)
+                    #df = download('SE', 2015)
+                    #json_result['data']['state']['year'] = df
+                    year_str = str(year)
+                    compression_opts = dict(method='zip', archive_name=f'{file_path}.csv')  
+                    df.to_csv(f'{file_path}.zip', index=False, compression=compression_opts)
+                    # self.io_utils.read_json()
+                    #self.io_utils.save_json()
 
+    def extract_rows_with_anomalie(self,states:List[str],years:List[str],anomalie_codes:List[str]):
+            # timestamp_year
+            # state
+            #f_anomalies = df.CODANOMAL.apply(lambda x: any(item for item in selection if item in x))
 
-    def _get_all_column_variables_descriptions_dicts(self):
+            sinasc_dirpath = os.path.join(self.data_dir,'external','SINASC_DATA')
+            for state in states:
+                state_dirpath = os.path.join(sinasc_dirpath,state)
+                for year in years:
+                    df = self.special_read_csv(os.path.join(state_dirpath,f'{state}_{year}.zip'))
+                    #df_anomalies = df[df['CODANOMAL'].str.contains(anomalie_code)]
+                    import pdb;pdb.set_trace()
+
+    def extract_rows_without_anomalie(self,states:List[str],years:List[str]):
+        pass
+
+    def _drop_trivials(self,df):
+        #CODOCUPMAE - Pode ser uma variável interessante mas dificil de ser processada
+        #NATURALMAE,CODPAISRES - Pais da mãe - pode ter alguma relação dependendo da anomalia
+        #DTNASCMAE - Trivial com o IDADEMAE
+        
+        df = df[df.columns.difference(['ORIGEM','CODESTAB','CODMUNNASC','CODMUNRES','IDANOMAL','DTNASC','HORANASC','DTCADASTRO','DIFDATA','CODMUNNATU','DTRECORIGA','CODUFNATU','NATURALMAE','DTNASCMAE','CODPAISRES','CODOCUPMAE','VERSAOSIST','NUMEROLOTE','DTDECLARAC', 'DTRECEBIM','SERIESCMAE','TPDOCRESP','TPFUNCRESP','TPMETESTIM'])]
+        df = df[df.columns.difference(['PARIDADE','KOTELCHUCK'])] #remoções temporárias por falta de explicalções das bases
+        df = df[df.columns.difference(['STDNEPIDEM', 'STDNNOVA'])] #provavelmente variaveis de controle da base
+        df = df[df.columns.difference(['DTULTMENST'])] #Dificil interpretação
+        return df
+
+    def special_read_csv(self,path):
         descriptions = {
-            'CODMUNNASC': {}
-        
+            'APGAR1':[0,1,2,3,4,5,6,7,8,9,10],
+            'APGAR5':[0,1,2,3,4,5,6,7,8,9,10],
+            'CONSPRENAT':list(range(0, 51)),
+            'CONSULTAS':[2,3,4,8],
+            'ESCMAE':[1,2,3,4,5],
+            'ESCMAE2010':[0,1,2,3,4,5],
+            'ESCMAEAGR1':[2,3,4,5,6,7,8,9,10,11,12,13],
+            'ESTCIVMAE':[1,3,4,5],
+            'GESTACAO':[1,2,3,4,5,6],
+            'GRAVIDEZ':[1,2,3],
+            'IDADEMAE': list(range(10, 46)),
+            'IDADEPAI':list(range(10, 66)),
+            'MESPRENAT':[1,2,3,4,5,6,7,8,9],
+            'PARTO':[1,2],
+            'PESO':list(range(1, 9000)),
+            'QTDFILMORT':list(range(0,10)),
+            'QTDFILVIVO':list(range(0,10)),
+            'QTDGESTANT':list(range(0,31)),
+            'QTDPARTCES':list(range(0,31)),
+            'QTDPARTNOR':list(range(0,31)),
+            'RACACOR':[1,2,3,4,5],
+            'RACACORMAE':[1,2,3,4,5],
+            'SEMAGESTAC':list(range(1,51)),
+            'SEXO':[0,1,2],
+            'STCESPARTO':[1,2,3],
+            'STTRABPART':[1,2,3],
+            'TPAPRESENT':[1,2,3],
+            'TPNASCASSI':[1,2,3,4],
+            'TPROBSON':list(range(1,12))
         }
-        
+        df = pd.read_csv(path)
+        df = self._drop_trivials(df)
+        y = df['CODANOMAL']
+        X =  df.drop('CODANOMAL',axis = 1)
+        X = X.apply(pd.to_numeric,errors='coerce')
+        for column in X:
+            if column in list(descriptions.keys()):
+                X.loc[~X[column].isin(descriptions[column]),column]=np.nan
+        df = X.join(y)
+        return df
+
     def _get_all_column_variables_descriptions(self):
         #codigos municipios
         #https://www.anatel.gov.br/dadosabertos/PDA/Codigo_Nacional/PGCN.csv
@@ -167,7 +233,7 @@ class SINASC_Retriever(Retriever):
         # 'DTRECORIGA':'Data do 1º recebimento do lote, dada pelo Sisnet.',
         }
         return columns_variables_descriptions
-    
+
     def describe_columns(self,**kwargs):
         return self._columns_descriptions 
 
