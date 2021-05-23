@@ -130,7 +130,7 @@ class SINASC_Retriever(Retriever):
             for year in years:
                 list_dfs_anomalies = []
                 year = str(year)
-                df = self.special_read_csv(os.path.join(state_dirpath,f'{state}_{year}.zip'))
+                df = self.special_read_csv(os.path.join(state_dirpath,f'{state}_{year}.zip'),get_anomalie=anomalies_present)
                 df['CODANOMAL'] = df['CODANOMAL'].fillna('')
                 for anomalie_code in anomalie_codes:
                     if anomalies_present:
@@ -173,10 +173,16 @@ class SINASC_Retriever(Retriever):
         #     import pdb;pdb.set_trace()
         return df
 
-    def special_read_csv(self,path):
-        df = pd.read_csv(path)
+    def special_read_csv(self,path,get_anomalie=True):
+        
+        if get_anomalie:    
+            df = pd.read_csv(path)  
+        else:
+            for chunk in pd.read_csv(path,chunksize=10000):
+                df = chunk
+                break
+        
         df = self._drop_trivials(df)
-        # import pdb;pdb.set_trace()
         y = df['CODANOMAL']
         X =  df.drop('CODANOMAL',axis = 1)
         X = X.apply(pd.to_numeric,errors='coerce')
