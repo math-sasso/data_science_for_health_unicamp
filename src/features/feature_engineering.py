@@ -19,8 +19,9 @@ import sys
 import pandas as pd
 import numpy as np
 from sklearn.experimental import enable_iterative_imputer
-from sklearn.impute import IterativeImputer
+from sklearn.impute import IterativeImputer, SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.base import TransformerMixin
 from typing import List
 
 
@@ -30,6 +31,29 @@ class Feature_Engineering(object):
     """
     def __init__(self):
         super().__init__()
+
+    def iterative_inputer_integer(self,df):
+        df_copy = df.copy()
+        imp = IterativeImputer(max_iter=10, random_state=0)
+        imp.fit(df_copy)
+        df_new = pd.DataFrame(np.round(imp.transform(df_copy)), columns = df_copy.columns)
+        df_new = df_new.astype('int32')
+        return df_new
+    
+    def max_freq_inputer(self,df):
+        df_copy = df.copy()
+        imp = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
+        df_new = pd.DataFrame(imp.fit_transform(df_copy),columns=df_copy.columns,index=df_copy.index)
+        df_new = df_new.astype('category')
+        #df_new[df_new.columns] = df_new[df_new.columns].astype('category')
+        return df_new
+
+    def get_cat_columns_in_codes(self,df_cat):
+        df_cat_copy = df_cat.copy()
+        for column in df_cat_copy.columns:
+            df_cat_copy[column] = df_cat_copy[column].cat.codes
+            df_cat_copy[column].replace({-1:np.nan},inplace=True)
+        return df_cat_copy
 
     def _split_df_in_xy(self,df,target_column):
         df_copy = df.copy()
@@ -62,12 +86,13 @@ class Feature_Engineering(object):
         df.isnull().any(axis=1)
         return df
 
-    def one_hot_encode_columns(self,df,column):
+    def one_hot_encode_columns(self,df,columns):
         df_copy = df.copy()
-        one_hot_encoded_column = pd.get_dummies(df_copy[column])
-        df_copy = df_copy.drop(column,axis = 1)
-        # Join the encoded df
-        df_copy = df_copy.join(one_hot_encoded_column)
+        for column in columns:
+            one_hot_encoded_column = pd.get_dummies(df_copy[column])
+            df_copy = df_copy.drop(column,axis = 1)
+            # Join the encoded df
+            df_copy = df_copy.join(one_hot_encoded_column)
         return df_copy
 
     def fit_normalizer(self,df_train,normalization_strategy):

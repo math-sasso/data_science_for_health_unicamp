@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from src.features.feature_selection import Feature_Selection
 from src.features.feature_engineering import Feature_Engineering
 from src.data.retrievers import SINASC_Retriever
+from src.data.explorer import GraphExplorer
 from src.io_utils import IO_Utils
 
 #Variáveis de Interesse
@@ -18,7 +19,8 @@ target_years = list(range(2010,2020))
 target_states = ['SP']
 
 #Setting Paths
-data_dir = os.path.join(os.path.dirname(__file__),'..','data')
+# data_dir = os.path.join(os.path.dirname(__file__),'..','data')
+data_dir = os.path.join(os.path.abspath(os.getcwd()).replace('= ',''),'..','data')
 processed_data_dir = os.path.join(data_dir,'processed')
 #sp_2019_path  = os.path.join(data_dir,'external','SINASC_DATA','SP','SP_2019.zip')
 
@@ -40,23 +42,25 @@ io_utils = IO_Utils()
 #                                                 anomalies_present=False)
 
 # io_utils.save_df_zipped_csv(df=df_no_anomalies,dirpath=processed_data_dir,file_name='df_no_sindrome_down')
-# df_no_anomalies_cropped = df_no_anomalies.sample(frac=1)[:len(df_anomalies)]
-# io_utils.save_df_zipped_csv(df=df_no_anomalies,dirpath=processed_data_dir,file_name='df_no_anomalies_cropped')
+# df_no_anomalies_cropped = df_no_anomalies.sample(frac=1)[:len(df_anomalies)].reset_index(drop=True)
+# io_utils.save_df_zipped_csv(df=df_no_anomalies_cropped,dirpath=processed_data_dir,file_name='df_no_sindrome_down_cropped')
 
 # Retrieving Datasets
-import pdb;pdb.set_trace()
-df_anomalies = pd.read_csv(os.path.join(processed_data_dir,'df_anomalies.zip'))
-df_no_anomalies_cropped = pd.read_csv(os.path.join(processed_data_dir,'df_no_anomalies_cropped.zip'))
+df_anomalies = pd.read_csv(os.path.join(processed_data_dir,'df_sindrome_down.zip'))
+df_anomalies['ANOMAL_PRESENT'] = 1
+df_no_anomalies_cropped = pd.read_csv(os.path.join(processed_data_dir,'df_no_sindrome_down_cropped.zip'))
+df_no_anomalies_cropped['ANOMAL_PRESENT'] = 0
+df = pd.concat([df_anomalies,df_no_anomalies_cropped], ignore_index=True).sample(frac=1).reset_index(drop=True)
+
+# Getting Statistics About the Data
 
 
-os.path.join(data_dir,'external','SINASC_DATA','SP')
+
 # Performing Feature Selection
-
+df = df.drop(['CODANOMAL', 'STATE', 'YEAR','CONTADOR'],axis = 1)
 
 import pdb;pdb.set_trace()
-df = fe.special_read_csv(path = sp_2019_path)
-df_econded = fe.encode_anomalie(df,'CODANOMAL',amolalie_code = target_anomal)
-X,y = fe._split_df_in_xy(df_econded,target_column='CODANOMAL')
+X,y = fe._split_df_in_xy(df,target_column='ANOMAL_PRESENT')
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 scaler = fe.fit_normalizer(df_train=X_train ,normalization_strategy='min_max_scaler')
 X_train = fe.normalize_data(X_train,scaler)
