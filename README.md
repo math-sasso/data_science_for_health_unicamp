@@ -125,7 +125,10 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
-# Dockerfile (Sera utilizado na intragração do sistema)
+# Como rodar este projeto?
+
+## Dockerfile (Sera utilizado na intragração do sistema)
+Para garantir que é possível importar todas as bibliotecas basta buildar e rodar o dockerfile com os seguintes comandos na raiz do projeto.
 
 Buildar docker image
 ```bash
@@ -137,7 +140,7 @@ Rodando o dockerfile
 sudo docker run -it -p 8080:8080 --name ds_health -v $(pwd):/app ds_health_img
 ```
 
-# Preparando para rodar Notebooks 
+## Preparando para rodar Notebooks 
 
 Criar Virtual Enverionment e Instalar os requiremets
 ```bash
@@ -146,7 +149,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Parcer técnico sobre a Sindrome de Down (SD)
+# Distribuição dos dados de entrada
+![entry](./assets/data_histograms.png)
+
+
+# Resultados
+
+
+## Matriz de Confusão
+
+## Curva ROC
+
+## Importância das Features
+![permapy](./Imgs/logo_permapy.png)
+
+
+
+# Parcer técnico sobre do especialista sobre os resultados obtidos
 
 
 O termo “síndrome” significa um conjunto de sinais e sintomas e “Down” designa o sobrenome do médico e pesquisador que primeiro descreveu a associação dos sinais característicos da pessoa com SD
