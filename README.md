@@ -150,18 +150,27 @@ pip install -r requirements.txt
 ```
 
 # Distribuição dos dados de entrada
-![entry](./assets/data_histograms.png)
+Histograma de distribuição dos dados de entrada antes da criação dos one hot encodings para as variáveis categóricas
+![data_histograms](./assets/figures/data_histograms.png)
 
 
 # Resultados
 
-
 ## Matriz de Confusão
+Matriz de confusão avaliada no conjunto de teste
+
+![matriz_confusao](./assets/figures/matriz_confusao.png)
+
 
 ## Curva ROC
+Curva ROC avaliada no conjunto de teste
+![roc_curev](./assets/figures/roc_curev.png)
+
 
 ## Importância das Features
-![permapy](./Imgs/logo_permapy.png)
+Importância das features de entrada segundo o algorítimo de Random Forest para a determinação das classes
+![feature_importance](./assets/figures/feature_importance.png)
+
 
 
 
