@@ -164,11 +164,13 @@ Matriz de confusão avaliada no conjunto de teste
 
 ## Curva ROC
 Curva ROC avaliada no conjunto de teste
+
 ![roc_curev](./assets/figures/roc_curev.png)
 
 
 ## Importância das Features
 Importância das features de entrada segundo o algorítimo de Random Forest para a determinação das classes
+
 ![feature_importance](./assets/figures/feature_importance.png)
 
 
