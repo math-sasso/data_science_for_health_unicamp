@@ -41,7 +41,7 @@ class Retriever(object):
         self.io_utils = IO_Utils()
         self.acceptable_years = np.arange(2010,2020)
     
-    def check_state_years_inputs_erros(self,states,years):
+    def check_state_years_inputs_errors(self,states,years):
             if (type(years) != list) or not all(isinstance(i, int) for i in years):
                 raise AttributeError("O argumento years deve ser uma lista de inteiros")
             
@@ -95,25 +95,26 @@ class SINASC_Retriever(Retriever):
        
         states = kwargs.get('states')
         years = kwargs.get('years')
-        json_path = kwargs.get('json_path',None)
+        #json_path = kwargs.get('json_path',None)
         
         #Removing Duplicates
         states = list(set(states))
         years = list(set(years))
         
         #Checking Errors
-        self.check_state_years_inputs_erros(states,years)
+        self.check_state_years_inputs_errors(states,years)
 
         #Downloading Data
-        json_result = self.io_utils.read_json(json_path) if json_path else {'metadata': {'column_descriptions':{}}}
+        #json_result = self.io_utils.read_json(json_path) if json_path else {'metadata': {'column_descriptions':{}}}
         for state in states:
             for year in years:
                 dir_path = os.path.join(self.sinasc_raw_dir,state)
-                self.io_utils.create_folder_structure(folder=dir_path)
-                if not os.path.exists(folder):
+                if not os.path.exists(dir_path):
+                    self.io_utils.create_folder_structure(folder=dir_path)
+                if not os.path.exists(os.path.join(dir_path,f'{state}_{year_str}.csv.gz')):
                     df = download(state, year)
                     year_str = str(year)
-                    io_utils.save_df_zipped_csv(df=df,dirpath=dir_path,file_name=f'{state}_{year_str}')
+                    self.io_utils.save_df_zipped_csv(df=df,dirpath=dir_path,file_name=f'{state}_{year_str}')
 
     def extract_rows_anomalie(self,states:List[str],years:List[int],anomalie_codes:List[str],anomalies_present=True):
         
@@ -122,7 +123,7 @@ class SINASC_Retriever(Retriever):
         years = list(set(years))
         
         #Checking Errors
-        self.check_state_years_inputs_erros(states,years)
+        self.check_state_years_inputs_errors(states,years)
         
         all_df_anomalies_list = []
         for state in states:
@@ -130,7 +131,7 @@ class SINASC_Retriever(Retriever):
             for year in years:
                 list_dfs_anomalies = []
                 year = str(year)
-                df = self.special_read_csv(os.path.join(state_dirpath,f'{state}_{year}.zip'),get_anomalie=anomalies_present)
+                df = self.special_read_csv(os.path.join(state_dirpath,f'{state}_{year}.csv.gz'),get_anomalie=anomalies_present)
                 df['CODANOMAL'] = df['CODANOMAL'].fillna('')
                 for anomalie_code in anomalie_codes:
                     if anomalies_present:
@@ -229,17 +230,6 @@ class SINASC_Retriever(Retriever):
 
         df_copy[list(categorical_maps.keys())] = df_copy[list(categorical_maps.keys())].astype('category')
         return df_copy
-
-
-
-
-
-
-
-
-
-
-
 
 
 

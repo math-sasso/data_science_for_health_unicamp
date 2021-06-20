@@ -1,6 +1,8 @@
 import os
 import json
 import pandas as pd
+import zipfile
+
 
 class IO_Utils(object):
     """ 
@@ -32,8 +34,14 @@ class IO_Utils(object):
         return txt_result
 
     def save_df_zipped_csv(self,df,dirpath,file_name):
-        compression_opts = dict(method='zip', archive_name=os.path.join(dirpath,f'{file_name}.csv'))  
-        df.to_csv(os.path.join(dirpath,f'{file_name}.zip'), index=False, compression=compression_opts)
+
+        #compression_opts = dict( ompression='gzip', archive_name=os.path.join(dirpath,f'{file_name}.csv'))  
+        df.to_csv(os.path.join(dirpath,f'{file_name}.csv.gz'), index=False, compression='gzip')
+
+    def read_zipped_csv_df(self,dirpath,file_name):
+        #zf = zipfile.ZipFile(os.path.join(dirpath,f'{file_name}.csv.gz'))
+        df = pd.read_csv(os.path.join(dirpath,f'{file_name}.csv.gz'))
+        return df
 
     def read_cnv_file_as_df(self,cnv_file_path,columns=None,special_pasing_method=None):
         with open(cnv_file_path,errors="ignore") as f:
@@ -49,19 +57,3 @@ class IO_Utils(object):
             # if any(len(list_df_rows[0])!= len(i) for i in list_df_rows):
             df = pd.DataFrame(list_df_rows,columns=None)
         return df
-
-
-def read_cnv_file_as_df(cnv_file_path,columns=None,special_pasing_method=None):
-    with open(cnv_file_path,errors="ignore") as f:
-        txt_result = f.read().split("\n")
-        if special_pasing_method:
-            list_df_rows = special_pasing_method(txt_result)
-        else:
-            list_df_rows =[list(filter(None, row.split('  '))) for row in txt_result]
-        list_df_rows = list_df_rows[1:-1]
-        list_df_rows = [x for x in list_df_rows if x]
-        list_df_rows = [[elem.strip() for elem in row] for row in list_df_rows]
-        _ = [l.pop(0) for l in list_df_rows]
-        # if any(len(list_df_rows[0])!= len(i) for i in list_df_rows):
-        df = pd.DataFrame(list_df_rows,columns=None)
-    return df
