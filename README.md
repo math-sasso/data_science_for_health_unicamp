@@ -1,6 +1,6 @@
 # data_science_for_health_unicamp
 
-# Projeto `Perfil de morbidade e mortalidade de recém-nascido com anomalias congênitas no Brasil entre 2005 a 2019.`
+# Projeto `Perfil de morbidade e mortalidade de recém-nascido com anomalias congênitas no Brasil entre 2010 a 2019.`
 
 # Project `<Title in English>`
 
@@ -125,7 +125,10 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
-# Dockerfile (Sera utilizado na intragração do sistema)
+# Como rodar este projeto?
+
+## Dockerfile (Sera utilizado na intragração do sistema)
+Para garantir que é possível importar todas as bibliotecas basta buildar e rodar o dockerfile com os seguintes comandos na raiz do projeto.
 
 Buildar docker image
 ```bash
@@ -137,7 +140,7 @@ Rodando o dockerfile
 sudo docker run -it -p 8080:8080 --name ds_health -v $(pwd):/app ds_health_img
 ```
 
-# Preparando para rodar Notebooks 
+## Preparando para rodar Notebooks 
 
 Criar Virtual Enverionment e Instalar os requiremets
 ```bash
@@ -146,7 +149,34 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Parcer técnico sobre a Sindrome de Down (SD)
+# Distribuição dos dados de entrada
+Histograma de distribuição dos dados de entrada antes da criação dos one hot encodings para as variáveis categóricas
+![data_histograms](./assets/figures/data_histograms.png)
+
+
+# Resultados
+
+## Matriz de Confusão
+Matriz de confusão avaliada no conjunto de teste
+
+![matriz_confusao](./assets/figures/matriz_confusao.png)
+
+
+## Curva ROC
+Curva ROC avaliada no conjunto de teste
+
+![roc_curev](./assets/figures/roc_curev.png)
+
+
+## Importância das Features
+Importância das features de entrada segundo o algorítimo de Random Forest para a determinação das classes
+
+![feature_importance](./assets/figures/feature_importance.png)
+
+
+
+
+# Parcer técnico sobre do especialista sobre os resultados obtidos
 
 
 O termo “síndrome” significa um conjunto de sinais e sintomas e “Down” designa o sobrenome do médico e pesquisador que primeiro descreveu a associação dos sinais característicos da pessoa com SD
