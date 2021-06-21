@@ -23,6 +23,7 @@ from sklearn.impute import IterativeImputer, SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.base import TransformerMixin
 from typing import List
+from ..io_utils import IO_Utils
 
 
 class Feature_Engineering(object):
@@ -31,6 +32,20 @@ class Feature_Engineering(object):
     """
     def __init__(self):
         super().__init__()
+        self.io_utils = IO_Utils()
+        self.wordk_dir = os.path.dirname(__file__)
+        self.data_dir = os.path.join(self.wordk_dir,'..','..','data')
+        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.data_dir,'interim','categorical_maps.json'))
+    
+    def fill_categorical_no_present_classes(self,df_cats):
+        for columns,possible_values in self.categorical_maps.items():
+            for _,value in possible_values.items():
+                #import pdb;pdb.set_trace()
+                if value not in df_cats.columns:
+                    df_cats[value] = [0]*len(df_cats)
+        
+        return df_cats
+
 
     def iterative_inputer_integer(self,df):
         df_copy = df.copy()

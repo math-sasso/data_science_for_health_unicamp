@@ -4,7 +4,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.ensemble import RandomForestClassifier
 root_dir = os.path.join(os.path.abspath(os.getcwd()).replace('= ',''))
 sys.path.append(root_dir)
 from src.features.feature_selection import Feature_Selection
@@ -88,19 +87,19 @@ else:
         STTRABPART = st.sidebar.selectbox("Trabalho de parto induzido?",tuple(dict_cat['STTRABPART'].values()))
         STCESPARTO = st.sidebar.selectbox("Cesárea ocorreu antes do trabalho de parto iniciar?",tuple(dict_cat['STCESPARTO'].values()))
         TPROBSON = st.sidebar.selectbox("Indíce trobson",tuple(dict_cat['TPROBSON'].values()))
-        IDADEMAE=st.sidebar.slider('Idade da mãe', 13,25,45,step=1)
-        QTDFILVIVO = st.sidebar.slider("Quantidade de filhos vivos",0,1,9,step=1) 
-        QTDFILMORT = st.sidebar.slider("Quantidade de perdas fetais ou abortos",0,0,6,step=1) 
+        IDADEMAE=st.sidebar.slider('Idade da mãe', 13,45,25,step=1)
+        QTDFILVIVO = st.sidebar.slider("Quantidade de filhos vivos",0,9,1,step=1) 
+        QTDFILMORT = st.sidebar.slider("Quantidade de perdas fetais ou abortos",0,6,0,step=1) 
         APGAR1 = st.sidebar.slider('APGAR1', 0,10,10,step=1)
         APGAR5 = st.sidebar.slider('APGAR5', 0,10,10,step=1)
-        PESO = st.sidebar.slider('Peso ao nascer em gramas', 1,3000,9000,step=1)
-        QTDGESTANT = st.sidebar.slider("Quantidade de gestações anteriores",0,1,30,step=1) 
-        QTDPARTNOR = st.sidebar.slider("Quantidade de partos normais anteriores",0,1,30,step=1)
-        QTDPARTCES = st.sidebar.slider("Quantidade de partos cesariana anteriores",0,1,30,step=1 )
-        IDADEPAI = st.sidebar.slider("Idade do pai",10,30,65,step=1) 
-        SEMAGESTAC = st.sidebar.slider("Número de semanas de gestação",1,40,50,step=1) 
-        CONSPRENAT = st.sidebar.slider("Número de cosultas pré natal",1,4,50,step=1) 
-        MESPRENAT = st.sidebar.slider("Mês de gestação em que iniciou o pré‐natal",1,5,9,step=1)
+        PESO = st.sidebar.slider('Peso ao nascer em gramas', 1,9000,3000,step=1)
+        QTDGESTANT = st.sidebar.slider("Quantidade de gestações anteriores",0,30,1,step=1) 
+        QTDPARTNOR = st.sidebar.slider("Quantidade de partos normais anteriores",0,30,1,step=1)
+        QTDPARTCES = st.sidebar.slider("Quantidade de partos cesariana anteriores",0,30,1,step=1 )
+        IDADEPAI = st.sidebar.slider("Idade do pai",10,65,30,step=1) 
+        SEMAGESTAC = st.sidebar.slider("Número de semanas de gestação",1,50,40,step=1) 
+        CONSPRENAT = st.sidebar.slider("Número de cosultas pré natal",1,50,40,step=1) 
+        MESPRENAT = st.sidebar.slider("Mês de gestação em que iniciou o pré‐natal",1,9,5,step=1)
 
         data = {
         'ESTCIVMAE': dict_model['ESTCIVMAE'][ESTCIVMAE],
@@ -149,11 +148,13 @@ df_consts = df[[x for x in df.columns if x not in df_cats.columns]]
 #df_consts_imp = fe.iterative_inputer_integer(df_consts)
 df_cats_codes = fe.get_cat_columns_in_codes(df_cats)
 df_cats = fe.one_hot_encode_columns(df_cats,df_cats.columns)
-for k,v in dict_cat.items():
+for k,v in dict_cat_orig.items():
     for _,v_ in v.items():
-        import pdb;pdb.set_trace()
+        #import pdb;pdb.set_trace()
         if v_ not in df_cats.columns:
             df_cats[v_] = [0]
+
+#import pdb;pdb.set_trace()
 df = df_cats.join(df_consts)
 df = df[:1] # Selects only the first row (the user input data)
 

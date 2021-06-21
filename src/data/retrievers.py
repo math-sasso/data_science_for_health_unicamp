@@ -68,7 +68,7 @@ class SINASC_Retriever(Retriever):
             'ESCMAE':[1,2,3,4,5],
             # 'ESCMAE2010':[0,1,2,3,4,5],
             # 'ESCMAEAGR1':[2,3,4,5,6,7,8,9,10,11,12,13],
-            'ESTCIVMAE':[1,3,4,5],
+            'ESTCIVMAE':[1,2,3,4,5],
             'GESTACAO':[1,2,3,4,5,6],
             'GRAVIDEZ':[1,2,3],
             'IDADEMAE': list(range(10, 46)),
@@ -91,6 +91,9 @@ class SINASC_Retriever(Retriever):
             # 'TPNASCASSI':[1,2,3,4],
             'TPROBSON':list(range(1,12))}
 
+        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.data_dir,'interim','categorical_maps.json'))
+      
+
     def get_data(self,**kwargs):
        
         states = kwargs.get('states')
@@ -109,11 +112,11 @@ class SINASC_Retriever(Retriever):
         for state in states:
             for year in years:
                 dir_path = os.path.join(self.sinasc_raw_dir,state)
+                year_str = str(year)
                 if not os.path.exists(dir_path):
                     self.io_utils.create_folder_structure(folder=dir_path)
                 if not os.path.exists(os.path.join(dir_path,f'{state}_{year_str}.csv.gz')):
                     df = download(state, year)
-                    year_str = str(year)
                     self.io_utils.save_df_zipped_csv(df=df,dirpath=dir_path,file_name=f'{state}_{year_str}')
 
     def extract_rows_anomalie(self,states:List[str],years:List[int],anomalie_codes:List[str],anomalies_present=True):
@@ -201,34 +204,18 @@ class SINASC_Retriever(Retriever):
             uniques_dict[column] = list(df[column].unique())
         print(df)
 
-
     def map_columns_as_categoricals(self,df):
         df_copy = df.copy()
-        categorical_maps = {
-            'CONSULTAS':{2:'1_3_consultas',3:'4_6_consultas',4:'7_+_consultas'},
-            'ESCMAE':{1:'sem_esc',2:'1_3_esc',3:'4_7_esc',4:'8_11_esc',5:'12_+_esc'},
-            'ESTCIVMAE':{1:'Solteiro',2:'Casado',3:'Viuvo',4:'Separado_Judicial',5:'Uniao_Estavel'},
-            'GESTACAO':{1:'22_-_semgest',2:'22_27_semgest',3:'28_31_semgest',4:'32_36_semgest',5:'37_41_semgest',6:'42_+_semgest'},
-            'GRAVIDEZ':{1:'grav_unica',2:'grav_dupla',3:'grav_tripla+'},
-            'PARTO':{1:'parto_vaginal',2:'parto_cesareo'},
-            'RACACOR':{1:'raca_branca',2:'raca_preta',3:'raca_amarela',4:'raca_parda',5:'raca_indigena'},
-            'RACACORMAE':{1:'raca_mae_branca',2:'raca_mae_preta',3:'raca_mae_amarela',4:'raca_mae_parda',5:'raca_mae_indigena'},
-            'SEXO':{0:'sexo_inc',1:'sexo_mas',2:'sexo_fem'},
-            'STCESPARTO':{1:'stcesparto_ces_antes',2:'stcesparto_ces_apos',3:'stcesparto_naplica'},
-            'STTRABPART':{1:'sttrabpart_sim',2:'sttrabpart_nao',3:'sttrabpart_naplica'},
-            'TPAPRESENT':{1:'tpa_cefalico',2:'tpa_pelvica_oupudalica',3:'tpa_transversa'},
-            'TPROBSON':{1:'robson_1',2:'robson_2',3:'robson_3',4:'robson_4',5:'robson_5',6:'robson_6',7:'robson_7',8:'robson_8',9:'robson_9',10:'robson_10',11:'robson_11'},
-            }
         
         for column in df_copy.columns:
-            if column in list(categorical_maps.keys()):
-                categories = categorical_maps[column]
+            if column in list(self.categorical_maps.keys()):
+                categories = self.categorical_maps[column]
                 #df_copy[column] = df_copy[column].map(categories) 
                 df_copy[column].replace(categories, inplace=True)
                 #df['ESTCIVMAE'].astype('int32',errors='ignore')
                 #df_copy[column].replace({-1:np.nan}, inplace=True)
 
-        df_copy[list(categorical_maps.keys())] = df_copy[list(categorical_maps.keys())].astype('category')
+        df_copy[list(self.categorical_maps.keys())] = df_copy[list(self.categorical_maps.keys())].astype('category')
         return df_copy
 
 

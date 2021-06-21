@@ -1,7 +1,8 @@
 import os
 import json
 import pandas as pd
-import zipfile
+from pickle import load as load_pickle
+from pickle import dump as dump_pickle
 
 
 class IO_Utils(object):
@@ -11,13 +12,30 @@ class IO_Utils(object):
     def __init__(self):
         pass
 
+
+    def load_pickle(self,filepath):
+        with open(filepath, 'rb') as f:
+            content = load_pickle(f)
+        return content
+
+    def save_pickle(self,filepath,info):
+        """
+        Save info in a picke file
+        """
+        with open(filepath, 'wb') as f:
+            dump_pickle(info, f)
+
     def read_json(self,json_file_path):
-        if not os.path.exists(json_file_path):
-            self.save_json(json_file_path,{})
-            print("creating json")
         with open(json_file_path) as f:
             json_result = json.load(f)
         return json_result
+
+    def read_categorical_maps(self,json_file_path):
+        with open(json_file_path) as f:
+            json_result = json.load(f)
+        json_result = {outer_k:{int(k):v for k,v in outer_v.items() } for outer_k,outer_v in json_result.items()}
+        return json_result
+        
     
     def create_folder_structure(self,folder):
         """ Create the comple folder structure if it does not exists """
