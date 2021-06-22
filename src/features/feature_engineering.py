@@ -35,7 +35,8 @@ class Feature_Engineering(object):
         self.io_utils = IO_Utils()
         self.wordk_dir = os.path.dirname(__file__)
         self.data_dir = os.path.join(self.wordk_dir,'..','..','data')
-        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.data_dir,'interim','categorical_maps.json'))
+        self.small_data_dir = os.path.join(self.wordk_dir,'..','..','small_data')
+        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.small_data_dir,'categorical_maps.json'))
     
     def fill_categorical_no_present_classes(self,df_cats):
         for columns,possible_values in self.categorical_maps.items():

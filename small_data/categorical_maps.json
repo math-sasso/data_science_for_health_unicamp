@@ -1,0 +1,15 @@
+{
+    "CONSULTAS":{"2":"1_3_consultas","3":"4_6_consultas","4":"7_+_consultas"},
+    "ESCMAE":{"1":"sem_esc","2":"1_3_esc","3":"4_7_esc","4":"8_11_esc","5":"12_+_esc"},
+    "ESTCIVMAE":{"1":"Solteiro","2":"Casado","3":"Viuvo","4":"Separado_Judicial","5":"Uniao_Estavel"},
+    "GESTACAO":{"1":"22_-_semgest","2":"22_27_semgest","3":"28_31_semgest","4":"32_36_semgest","5":"37_41_semgest","6":"42_+_semgest"},
+    "GRAVIDEZ":{"1":"grav_unica","2":"grav_dupla","3":"grav_tripla+"},
+    "PARTO":{"1":"parto_vaginal","2":"parto_cesareo"},
+    "RACACOR":{"1":"raca_branca","2":"raca_preta","3":"raca_amarela","4":"raca_parda","5":"raca_indigena"},
+    "RACACORMAE":{"1":"raca_mae_branca","2":"raca_mae_preta","3":"raca_mae_amarela","4":"raca_mae_parda","5":"raca_mae_indigena"},
+    "SEXO":{"0":"sexo_inc","1":"sexo_mas","2":"sexo_fem"},
+    "STCESPARTO":{"1":"stcesparto_ces_antes","2":"stcesparto_ces_apos","3":"stcesparto_naplica"},
+    "STTRABPART":{"1":"sttrabpart_sim","2":"sttrabpart_nao","3":"sttrabpart_naplica"},
+    "TPAPRESENT":{"1":"tpa_cefalico","2":"tpa_pelvica_oupudalica","3":"tpa_transversa"},
+    "TPROBSON":{"1":"robson_1","2":"robson_2","3":"robson_3","4":"robson_4","5":"robson_5","6":"robson_6","7":"robson_7","8":"robson_8","9":"robson_9","10":"robson_10","11":"robson_11"}
+}

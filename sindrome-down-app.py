@@ -12,7 +12,7 @@ from src.data.retrievers import SINASC_Retriever
 
 data_dir = os.path.join(root_dir,'data')
 processed_data_dir = os.path.join(data_dir,'processed')
-models_dir = os.path.join(root_dir,'models')
+small_data_dir = os.path.join(root_dir,'small_data')
 
 
 dict_cat = {'CONSULTAS':{2:'1 a 3 consultas',3:'4 a 6 consultas',4:'7 ou mais consultas'},
@@ -168,7 +168,7 @@ else:
     st.write(df)
 
 # Reads in saved classification model
-filepath = os.path.join(models_dir,'rf_model_sdown.sav')
+filepath = os.path.join(small_data_dir,'rf_model_sdown.sav')
 load_clf = pickle.load(open(filepath, 'rb'))
 
 # Apply model to make predictions

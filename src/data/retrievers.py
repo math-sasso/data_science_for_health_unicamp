@@ -38,6 +38,7 @@ class Retriever(object):
         }
         self.wordk_dir = os.path.dirname(__file__)
         self.data_dir = os.path.join(self.wordk_dir,'..','..','data')
+        self.small_data_dir = os.path.join(self.wordk_dir,'..','..','small_data')
         self.io_utils = IO_Utils()
         self.acceptable_years = np.arange(2010,2020)
     
@@ -91,7 +92,7 @@ class SINASC_Retriever(Retriever):
             # 'TPNASCASSI':[1,2,3,4],
             'TPROBSON':list(range(1,12))}
 
-        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.data_dir,'interim','categorical_maps.json'))
+        self.categorical_maps = self.io_utils.read_categorical_maps(json_file_path=os.path.join(self.small_data_dir,'categorical_maps.json'))
       
 
     def get_data(self,**kwargs):

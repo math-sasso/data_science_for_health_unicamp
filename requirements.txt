@@ -25,4 +25,5 @@ auto-sklearn==0.12.5
 pipelineprofiler==0.1.17
 xgboost==1.4.1
 streamlit==0.83.0
+imbalanced-learn==0.8.0
 
