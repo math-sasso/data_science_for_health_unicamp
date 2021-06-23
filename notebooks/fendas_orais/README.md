@@ -18,9 +18,9 @@ Curva ROC avaliada no conjunto de teste
 ## Importância das Features
 Importância das features de entrada segundo o algorítimo escolhido pelo AutoML e segundo o XGBOOST
 
-* AutoML Best Model
+* AutoML Best Model <br>
 ![feature_importance_automl](../../assets/figures/fendas_orais/feature_importance_automl.png)
 
-* XGBOOST
+* XGBOOST <br>
 
 ![feature_importance_automl](../../assets/figures/fendas_orais/feature_importance_xgboost.png)
