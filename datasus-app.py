@@ -57,8 +57,8 @@ fs = Feature_Selection()
 
 st.write("""
 # Preditor de anomalias a partir dos dados do SINASC
-O objetivo desta aplicação é predizer a partir das variáveis de entrada disponibilizadas pelo DATASUS se um recém nascido possui ou as anomalias estudadas.
-Dados obtidos do [SINASC](http://tabnet.datasus.gov.br/cgi/deftohtm.exe?SINASC/anomalias/anomabr.def), plataforma de daddos de recém nascidos do DATASUS
+O objetivo desta aplicação é compreender o impacto dos indicadores na identificação das anomalias estudadas.
+Dados obtidos do [SINASC](http://tabnet.datasus.gov.br/cgi/deftohtm.exe?SINASC/anomalias/anomabr.def), plataforma de dados de recém nascidos do DATASUS
 """)
 
 st.sidebar.header('Variáveis de entrada')

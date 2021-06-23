@@ -167,16 +167,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Distribuição dos dados de entrada
-Histograma de distribuição dos dados de entrada antes da criação dos one hot encodings para as variáveis categóricas
-![data_histograms](./assets/figures/data_histograms.png)
-
-
 # Resultados
 
 ## Sindrome de Down
 
-![matriz_confusao](./assets/figures/matriz_confusao.png)
+![sindrome_down](.notebooks/sindrome_down)
 
 ## Cardiopatias Congênitas
 
