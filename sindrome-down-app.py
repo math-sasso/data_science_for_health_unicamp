@@ -136,6 +136,9 @@ else:
         return features
     input_df = user_input_features()
 
+
+input_df = pd.read_csv("/l/disk0/msasso/Documentos/Disciplinas/Ciencia_Visualizacao_Dados/data_science_for_health_unicamp/small_data/amostra_uma_linha.csv")
+input_df = input_df.drop(['ANOMAL_PRESENT','Unnamed: 0'],axis = 1,errors='ignore')
 # Combines user input features with entire penguins dataset
 # This will be useful for the encoding phase
 df = input_df.copy()
@@ -157,6 +160,8 @@ for k,v in dict_cat_orig.items():
 #import pdb;pdb.set_trace()
 df = df_cats.join(df_consts)
 df = df[:1] # Selects only the first row (the user input data)
+
+import pdb;pdb.set_trace()
 
 # Displays the user input features
 st.subheader('Entradas do usuário')
