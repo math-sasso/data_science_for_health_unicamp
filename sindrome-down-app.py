@@ -58,17 +58,18 @@ fs = Feature_Selection()
 st.write("""
 # Preditor de Sindrome de Down com dados do SINASC
 O objetivo desta aplicação é predizer a partir das variáveis de entrada disponibilizadas pelo DATASUS se um recém nascido possui ou não síndrome de down.
-Dados obtidos do SINASC [palmerpenguins library](http://tabnet.datasus.gov.br/cgi/deftohtm.exe?SINASC/anomalias/anomabr.def), plataforma de daddos de recém nascidos do DATASUS
+Dados obtidos do [SINASC](http://tabnet.datasus.gov.br/cgi/deftohtm.exe?SINASC/anomalias/anomabr.def), plataforma de daddos de recém nascidos do DATASUS
 """)
 
 st.sidebar.header('Variáveis de entrada')
 
 st.sidebar.markdown("""
-[Exemplo de CSV de entrada](https://raw.githubusercontent.com/dataprofessor/data/master/penguins_example.csv)
+[Exemplo de CSV de entrada](https://raw.githubusercontent.com/math-sasso/data_science_for_health_unicamp/main/small_data/amostra_uma_linha.csv
+)
 """)
 
 # Collects user input features into dataframe
-uploaded_file = st.sidebar.file_uploader("Insira o seu CSV aquis", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Insira o seu CSV aqui", type=["csv"])
 if uploaded_file is not None:
     input_df = pd.read_csv(uploaded_file)
 else:
@@ -135,9 +136,6 @@ else:
 
 # Combines user input features with entire penguins dataset
 # This will be useful for the encoding phase
-#data_raw = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
-#penguins = data_raw.drop(columns=['species'], axis=1)
-#df = pd.concat([input_df,penguins],axis=0)
 df = input_df.copy()
 # Encoding of ordinal features
 # https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering
