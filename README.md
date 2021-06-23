@@ -123,13 +123,13 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 ├── LICENSE
 ├── README.md          <- apresentação do projeto
 │
-├│
+│
 │   ├── external       <- dados de terceiros
 │   ├── interim        <- dados intermediários, e.g., resultado de transformação
 │   ├── processed      <- dados finais usados para a modelagem
 │   └── raw            <- dados originais sem modificações
 │
-├── small_data             <- Dados que precisavam estar no GIT e não no DVC
+├── small_data         <- Dados que precisavam estar no GIT e não no DVC
 │ 
 ├── notebooks          <- Jupyter notebooks ou equivalentes
 │
