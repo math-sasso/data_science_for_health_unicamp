@@ -171,31 +171,31 @@ pip install -r requirements.txt
 
 ## Sindrome de Down
 
-![sindrome_down](.notebooks/sindrome_down)
+![sindrome_down](./notebooks/sindrome_down)
 
 ## Cardiopatias Congênitas
 
-![matriz_confusao](./assets/figures/matri)
+![cardiopatias_congenitas](./notebooks/cardiopatias_congenitas)
 
 ## Fendas Orais
 
-![matriz_confusao](./assets/figures/matri)
+![fendas_orais](./notebooks/fendas_orais)
 
 ## Anomalias em Membros
 
-![matriz_confusao](./assets/figures/matri)
+![anomalias_membros](./notebooks/membros)
 
 ## Microcefalia
 
-![matriz_confusao](./assets/figures/matri)
+![microcefalia](./notebooks/microcefalia)
 
 ## Anomalias nas Paredes Abdominais
 
-![matriz_confusao](./assets/figures/matri)
+![paredes_abdominais](./notebooks/paredes_abdominais)
 
 ## Anomalias no Tubo Neural
 
-![matriz_confusao](./assets/figures/matri)
+![tubo_neural](./notebooks/tubo_neural)
 
 
 # Parecer Técnico
