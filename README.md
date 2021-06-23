@@ -6,7 +6,7 @@
 
 # Apresentação
 
-O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação [_Ciência e Visualização de Dados em Saúde_](https://github.com/datasci4health/home), oferecida no primeiro semestre de 2021, na Unicamp.
+O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação \f, oferecida no primeiro semestre de 2021, na Unicamp.
 
 | Nome                             | RA     | Especialização |
 | -------------------------------- | ------ | -------------- |
@@ -17,13 +17,19 @@ O presente projeto foi originado no contexto das atividades da disciplina de pó
 
 # Descrição Resumida do Projeto
 
-Projeto é motivada pela especialidade da Kedma na área de desenvolvimento infantil. Sabendo que as malformações congênitas representam importante problema de saúde pública, tendo em vista suas repercussões no crescimento e desenvolvimento infantil nosso projeto contempla os pontos a seguir:
+Projeto é motivado pela especialidade da Kedma na área de desenvolvimento infantil. Sabendo que as malformações congênitas representam importante problema de saúde pública, tendo em vista suas repercussões no crescimento e desenvolvimento infantil nosso projeto contempla os pontos a seguir:
 
 - Interface a qual seja possível verificar as causas de disfunções de malformação de nascidos vivos podendo ser consultadas por estado/microrregião.
 
 - Sistema de inteligência artificial que retornará o impacto de cada variável de entrada para que seja predita uma classe de anomalia na saída.
 
-[Vídeo de Apresentação](https://youtu.be/DN1tSBkntmY)
+**Aplicações**:
+
+- Aplicação de predição de Sidrome de Down com dados do SINCASC: [datasus-sdown](https://datasus-sdown.herokuapp.com/)
+
+- Aplicação completa com estatisticas do SINCASC: [sinasc](https://sinasc.netlify.app/#/)
+
+
 
 # Perguntas de Pesquisa
 
@@ -34,7 +40,7 @@ Foram extraidos do SINASC , base do Datasus com dados de recém nascidos vivos, 
 
 Rotulou-se com a classe 1 os recem nascidos que possuiam a anolaia e aleatoriamente escolhou-se o mesmo numero de recém nascidos que não possuiam nenhuma anomalia ou anomalias não relacionadas a Sindrome de Down. Os dados categóricos foram codificador em one hot e após isso normalizou-se todos os dados dentro de um MinMax Scaler.
 
-O modelo utilizado foi o Random Forest e com o mesmo pode-se extrair a influencia de cada feature no resultado final, com acurácia próxima a 79%. Percebeu-se alguns fatores que ja se esperava do conhecimento da medicina, como a alta influência da idade mãe para que o nascido possua Sindrome de Down.
+O modelo utilizado foi o Random Forest e com o mesmo pode-se extrair a influência de cada feature no resultado final, com acurácia próxima a 78%. Percebeu-se alguns fatores que ja se esperava do conhecimento da medicina, como a alta influência da idade mãe para que o nascido possua Sindrome de Down.
 
 # Bases de Dados
 
