@@ -147,8 +147,6 @@ df = input_df.copy()
 df = retriever.map_columns_as_categoricals(df)
 df_cats = df.select_dtypes(['category'])
 df_consts = df[[x for x in df.columns if x not in df_cats.columns]] 
-#df_cats_imp = fe.max_freq_inputer(df_cats)
-#df_consts_imp = fe.iterative_inputer_integer(df_consts)
 df_cats_codes = fe.get_cat_columns_in_codes(df_cats)
 df_cats = fe.one_hot_encode_columns(df_cats,df_cats.columns)
 for k,v in dict_cat_orig.items():
@@ -160,8 +158,6 @@ for k,v in dict_cat_orig.items():
 #import pdb;pdb.set_trace()
 df = df_cats.join(df_consts)
 df = df[:1] # Selects only the first row (the user input data)
-
-import pdb;pdb.set_trace()
 
 # Displays the user input features
 st.subheader('Entradas do usuário')
