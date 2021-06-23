@@ -1,8 +1,8 @@
 # data_science_for_health_unicamp
 
-# Projeto `Perfil de morbidade e mortalidade de recém-nascido com anomalias congênitas no Brasil entre 2010 a 2019.`
+# Projeto `Perfil de morbidade de recém-nascido com anomalias congênitas no Brasil entre 2010 a 2019.`
 
-# Project `<Title in English>`
+# Project `Morbidity profile of newborns with congenital anomalies in Brazil between 2010 and 2019.`
 
 # Apresentação
 
@@ -119,11 +119,11 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 # Project Organization
 
 ---
-
+`
 ├── LICENSE
 ├── README.md          <- apresentação do projeto
 │
-│
+│── data
 │   ├── external       <- dados de terceiros
 │   ├── interim        <- dados intermediários, e.g., resultado de transformação
 │   ├── processed      <- dados finais usados para a modelagem
@@ -137,7 +137,7 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 │   └── README.md      <- instruções básicas de instalação/execução
 │
 └── assets             <- mídias usadas no projeto
-
+`
 ---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
