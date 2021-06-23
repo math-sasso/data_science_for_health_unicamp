@@ -112,7 +112,7 @@ class Feature_Engineering(object):
         return df_copy
 
     def fit_normalizer(self,df_train,normalization_strategy):
-        if 'min_max_scaler':
+        if normalization_strategy == 'min_max_scaler':
             scaler = MinMaxScaler()
             scaler.fit(df_train)
         return scaler

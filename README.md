@@ -34,11 +34,13 @@ Foram extraidos do SINASC , base do Datasus com dados de recém nascidos vivos, 
 
 Rotulou-se com a classe 1 os recem nascidos que possuiam a anolaia e aleatoriamente escolhou-se o mesmo numero de recém nascidos que não possuiam nenhuma anomalia ou anomalias não relacionadas a Sindrome de Down. Os dados categóricos foram codificador em one hot e após isso normalizou-se todos os dados dentro de um MinMax Scaler.
 
-O modelo utilizado foi o Random Forest e com o mesmo pode-se extrair a influencia de cada feature no resultado final, com acurácia próxima a 75%. Percebeu-se alguns fatores que ja se esperava do conhecimento da medicina, como a alta influência da idade mãe para que o nascido possua Sindrome de Down.
+O modelo utilizado foi o Random Forest e com o mesmo pode-se extrair a influencia de cada feature no resultado final, com acurácia próxima a 79%. Percebeu-se alguns fatores que ja se esperava do conhecimento da medicina, como a alta influência da idade mãe para que o nascido possua Sindrome de Down.
 
 # Bases de Dados
 
-A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019. Entrtanto escolheu-se apenas SP para limitar o contexto dos dados devido a grande quantidade e o periodo de 2010 a 2019, pois antes de 2010 menos dados eram oferecidos pela base.
+A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019. Entrtanto escolheu-se apenas os estados do Sudeste (São Paulo, Rioo de Janeiro, Espírito Santo e Minas Gerais) para limitar o contexto dos dados devido a grande quantidade e o periodo de 2010 a 2019, pois antes de 2010 menos dados eram oferecidos pela base.
+
+É importante salientar que por o git não suportar uma grande quantidade de dados no projeto, utilizou-se a ferramenta [DVC](https://dvc.org/doc/start), a qual possibilita a colocar os dados do projeto no google drive apenas incluindo uma referência com extensão .dvc no github. Com esta referência e comandos da aplicação é possível baixar os dados na máquina local.
 
 ## Bases Estudadas mas Não Adotadas
 
@@ -56,12 +58,12 @@ SINASC | [http://base1.org/ ](http://www2.datasus.gov.br/DATASUS/index.php?area=
 
 
 *O que descobriu sobre esse banco?
-É possível pegar as colunas cruzadas com os estados uma a uma pelo site. O PySUS surgiu como altenativa para fazer a coleta automatizada.
+É possível utilizar as colunas cruzadas com os estados uma a uma pelo site. O PySUS surgiu como altenativa para fazer a coleta automatizada.
 
 *Quais as transformações e tratamentos (e.g., dados faltantes e limpeza) feitos?
 Descoberta dos valores que correspondiam a valores nulos não intuitivos, através da leitura dos relatórios
 Dados inputados em variáveis numéricas NaN com o Iterative Imputer do sklearn
-Dados inputados em variáveis caategóricas NaN pelo valor máximo
+Dados inputados em variáveis categóricas NaN pelo valor máximo
 One Hot encoding das variáveis categóricas
 
 *Por que este banco foi adotado?
@@ -74,8 +76,9 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 
 * Python e libs (Pysus, pandas…) para tratar dados e criar modelo
 * DVC para fazer o storage dos dados 
-* React para desenvolver interface front-end (Ainda não implementado)
-*  Fast API para servir os resultados para o front-end (Ainda não implementado)
+* React para desenvolver interface front-end
+* Fast API para servir os resultados para o front-end
+* Heroku para hospedar a aplicação e desta forma possuir uma URL Pública 
 
 # Cronograma
 
@@ -140,9 +143,10 @@ Rodando o dockerfile
 sudo docker run -it -p 8080:8080 --name ds_health -v $(pwd):/app ds_health_img
 ```
 
+
 ## Preparando para rodar Notebooks 
 
-Criar Virtual Enverionment e Instalar os requiremets
+Para rodar o notebook, é necessário criar uma Virtual ENV e instalar as bibliotecas demandadas pelo projeto através do comando:
 ```bash
 python3 venv -m .venv
 source .venv/bin/activate

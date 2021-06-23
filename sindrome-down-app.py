@@ -96,7 +96,7 @@ else:
         QTDGESTANT = st.sidebar.slider("Quantidade de gestações anteriores",0,30,1,step=1) 
         QTDPARTNOR = st.sidebar.slider("Quantidade de partos normais anteriores",0,30,1,step=1)
         QTDPARTCES = st.sidebar.slider("Quantidade de partos cesariana anteriores",0,30,1,step=1 )
-        IDADEPAI = st.sidebar.slider("Idade do pai",10,65,30,step=1) 
+        #IDADEPAI = st.sidebar.slider("Idade do pai",10,65,30,step=1) 
         SEMAGESTAC = st.sidebar.slider("Número de semanas de gestação",1,50,40,step=1) 
         CONSPRENAT = st.sidebar.slider("Número de cosultas pré natal",1,50,40,step=1) 
         MESPRENAT = st.sidebar.slider("Mês de gestação em que iniciou o pré‐natal",1,9,5,step=1)
@@ -124,7 +124,7 @@ else:
         'QTDGESTANT':QTDGESTANT ,
         'QTDPARTNOR':QTDPARTNOR ,
         'QTDPARTCES':QTDPARTCES ,
-        'IDADEPAI':IDADEPAI ,
+        #'IDADEPAI':IDADEPAI ,
         'SEMAGESTAC':SEMAGESTAC ,
         'CONSPRENAT':CONSPRENAT ,
         'MESPRENAT':MESPRENAT}
@@ -138,7 +138,7 @@ else:
 #data_raw = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
 #penguins = data_raw.drop(columns=['species'], axis=1)
 #df = pd.concat([input_df,penguins],axis=0)
-df = input_df
+df = input_df.copy()
 # Encoding of ordinal features
 # https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering
 df = retriever.map_columns_as_categoricals(df)
@@ -162,10 +162,10 @@ df = df[:1] # Selects only the first row (the user input data)
 st.subheader('Entradas do usuário')
 
 if uploaded_file is not None:
-    st.write(df)
+    st.write(input_df)
 else:
     st.write('Esperando por CSV a ser carregado')
-    st.write(df)
+    st.write(input_df)
 
 # Reads in saved classification model
 filepath = os.path.join(small_data_dir,'rf_model_sdown.sav')
