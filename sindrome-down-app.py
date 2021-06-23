@@ -71,8 +71,8 @@ st.sidebar.markdown("""
 # Collects user input features into dataframe
 uploaded_file = st.sidebar.file_uploader("Insira o seu CSV aqui", type=["csv"])
 if uploaded_file is not None:
-    input_df = pd.read_csv(uploaded_file)
-    input_df = input_df.drop(['ANOMAL_PRESENT'],axis = 1)
+    input_df = pd.read_csv("/l/disk0/msasso/Documentos/Disciplinas/Ciencia_Visualizacao_Dados/data_science_for_health_unicamp/small_data/amostra_uma_linha.csv")
+    input_df = input_df.drop(['ANOMAL_PRESENT','Unnamed: 0'],axis = 1,errors='ignore')
     
 else:
     #streamlit.slider(label, min_value=None, max_value=None, value=None, step=None, format=None, key=None, help=None)
@@ -137,8 +137,6 @@ else:
     input_df = user_input_features()
 
 
-input_df = pd.read_csv("/l/disk0/msasso/Documentos/Disciplinas/Ciencia_Visualizacao_Dados/data_science_for_health_unicamp/small_data/amostra_uma_linha.csv")
-input_df = input_df.drop(['ANOMAL_PRESENT','Unnamed: 0'],axis = 1,errors='ignore')
 # Combines user input features with entire penguins dataset
 # This will be useful for the encoding phase
 df = input_df.copy()
