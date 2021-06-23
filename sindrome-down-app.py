@@ -56,8 +56,8 @@ fs = Feature_Selection()
  
 
 st.write("""
-# Preditor de Sindrome de Down com dados do SINASC
-O objetivo desta aplicação é predizer a partir das variáveis de entrada disponibilizadas pelo DATASUS se um recém nascido possui ou não síndrome de down.
+# Preditor de anomalias a partir dos dados do SINASC
+O objetivo desta aplicação é predizer a partir das variáveis de entrada disponibilizadas pelo DATASUS se um recém nascido possui ou as anomalias estudadas.
 Dados obtidos do [SINASC](http://tabnet.datasus.gov.br/cgi/deftohtm.exe?SINASC/anomalias/anomabr.def), plataforma de daddos de recém nascidos do DATASUS
 """)
 
@@ -165,14 +165,134 @@ else:
     st.write('Esperando por CSV a ser carregado')
     st.write(input_df)
 
+##########################################################
+#                    Sindrome de Down                    #
+##########################################################
+anomalie_name = 'Sindrome de Down'
+st.subheader(f'Predição - {anomalie_name}')
 # Reads in saved classification model
-filepath = os.path.join(small_data_dir,'rf_model_sdown.sav')
+filepath = os.path.join(small_data_dir,'model_sdown.sav')
 load_clf = pickle.load(open(filepath, 'rb'))
 
 # Apply model to make predictions
 prediction = load_clf.predict(df)
-prediction_proba = load_clf.predict_proba(df)
+#prediction_proba = load_clf.predict_proba(df)
 
-st.subheader('Predição')
-options = np.array(['Sindrome de Down presente','Sindrome de Down ausente'])
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
 st.write(options[prediction])
+
+##########################################################
+#                    Cardiopatias Congenitas             #
+##########################################################
+anomalie_name = 'Cardiopatias Congenitas'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_cardiopatias_congenitas.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+
+##########################################################
+#                    Fendas Orais                        #
+##########################################################
+anomalie_name = 'Fendas Orais'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_fendas_orais.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+##########################################################
+#                       Microcefalia                     #
+##########################################################
+anomalie_name = 'Microcefalia'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_microcefalia.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+##########################################################
+#                  Anomalia Orgãos Genitais             #
+##########################################################
+anomalie_name = 'Anomalia Orgãos Genitais'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_orgaos_genitais.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+##########################################################
+#                 Anomalia Paredes Abdominais            #
+##########################################################
+anomalie_name = 'Anomalia Paredes Abdominal'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_paredes_abdominais.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+
+##########################################################
+#                 Anomalia Tubo Neural                            #
+##########################################################
+anomalie_name = 'Anomalia Tubo Neural'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_tubo_neural.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+##########################################################
+#                 Anomalia Membros                       #
+##########################################################
+anomalie_name = 'Anomalia Membros'
+st.subheader(f'Predição - {anomalie_name}')
+# Reads in saved classification model
+filepath = os.path.join(small_data_dir,'model_membros.sav')
+load_clf = pickle.load(open(filepath, 'rb'))
+
+# Apply model to make predictions
+prediction = load_clf.predict(df)
+#prediction_proba = load_clf.predict_proba(df)
+
+options = np.array([f'{anomalie_name} presente',f'{anomalie_name} ausente'])
+st.write(options[prediction])
+
+
