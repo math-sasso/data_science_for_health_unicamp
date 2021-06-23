@@ -19,32 +19,39 @@ O presente projeto foi originado no contexto das atividades da disciplina de pó
 
 Projeto é motivado pela especialidade da Kedma na área de desenvolvimento infantil. Sabendo que as malformações congênitas representam importante problema de saúde pública, tendo em vista suas repercussões no crescimento e desenvolvimento infantil nosso projeto contempla os pontos a seguir:
 
-- Interface a qual seja possível verificar as causas de disfunções de malformação de nascidos vivos podendo ser consultadas por estado/microrregião.
+- Interface a qual seja possível verificar o perfil de malformação de nascidos vivos podendo ser consultadas por macroregião no estado de São Paulo.
 
-- Sistema de inteligência artificial que retornará o impacto de cada variável de entrada para que seja predita uma classe de anomalia na saída.
+- Aplicaçãp de inteligência artificial que detectará anomalias a partir de cada variável de entrada.
+
+- Estudo da influência das variáveis de entrada para a identificação de cada anomalia.
+
+- Estudo dos modelos que mais se adequam para a classificação de cada tipo de anomalia.
 
 **Aplicações**:
 
-- Aplicação de predição de Sidrome de Down com dados do SINCASC: [datasus-sdown](https://datasus-sdown.herokuapp.com/)
+- Aplicação de predição de anomalias com dados do SINASC: [preditor-anomalias](https://datasus-app.herokuapp.com/)
 
-- Aplicação completa com estatisticas do SINCASC: [sinasc](https://sinasc.netlify.app/#/)
-
+- Aplicação completa com estatisticas do SINASC: [site](https://sinasc.netlify.app/#/)
 
 
 # Perguntas de Pesquisa
 
-Qual o perfil de morbidade e mortalidade dos recém-nascidos com anomalias congênitas de acordo com os estados brasileiros no período entre 2010 a 2019 para o estado de São Paulo?
+Qual o perfil de morbidade dos recém-nascidos com anomalias congênitas no período entre 2010 a 2019 para o estado de São Paulo?
 
 # Metodologia
-Foram extraidos do SINASC , base do Datasus com dados de recém nascidos vivos, todos os dados correspontes ao intervalo de 2010 a 2019 no estado de São Paulo. Destes dados foram extraídos os dados de recém nascidos que possuiam a anomalia de Sindrome de Down, com codificação na base variando de Q900 a Q909.
 
-Rotulou-se com a classe 1 os recem nascidos que possuiam a anolaia e aleatoriamente escolhou-se o mesmo numero de recém nascidos que não possuiam nenhuma anomalia ou anomalias não relacionadas a Sindrome de Down. Os dados categóricos foram codificador em one hot e após isso normalizou-se todos os dados dentro de um MinMax Scaler.
+Foram extraidos do SINASC , base do Datasus com dados de recém nascidos vivos, todos os dados correspontes ao intervalo de 2010 a 2019 para o Sudeste,dos quais dados foram extraídos aqueles de recém nascidos que possuiam anomalias referentes aos grupos do boletim epidemiológico publicado em 2021.
 
-O modelo utilizado foi o Random Forest e com o mesmo pode-se extrair a influência de cada feature no resultado final, com acurácia próxima a 78%. Percebeu-se alguns fatores que ja se esperava do conhecimento da medicina, como a alta influência da idade mãe para que o nascido possua Sindrome de Down.
+Rotulou-se com a classe 1 os recém nascidos que possuiam a anomalia e aleatoriamente escolhou-se o mesmo numero de recém nascidos que não possuiam a anomalia de interesse . Os dados categóricos foram codificados em one hot e após isso normalizou-se todos os dados dentro de um MinMax Scaler. Utilizou-se o AutoML para identificar o modelo com melhor performance para cada grupo de anomalia e ao comparar este o resultado do mesmo com a classificação  XGBOOST, selecionou-se aquele que possuia a maior acurácia.
+
+Ademais, é importante ressaltar que primeiramente os modelos foram calculados apenas considerando os dados do Estado de São Paulo. Em seguida ao utilizar os dados referentes ao Sudeste verificou-se uma melhora signifitiva no resultado dos modelos por haver maior número de exemplares com anomalias.
+
+Além disso, para visualização, construiu-se uma interface web para visualização dos dados brutos anuais de 2010 a 2019 destes grupos de anomalias para cada macrorregião no estado de São Paulo. O objetivo deste é facilitar a compreensão do problema a partir de uma visualização espacial e temporal das incidências de anomalia.
+
 
 # Bases de Dados
 
-A base de dados utilizada no problema em questão é o SINASC do datasus, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019. Entrtanto escolheu-se apenas os estados do Sudeste (São Paulo, Rioo de Janeiro, Espírito Santo e Minas Gerais) para limitar o contexto dos dados devido a grande quantidade e o periodo de 2010 a 2019, pois antes de 2010 menos dados eram oferecidos pela base.
+A base de dados utilizada no problema em questão é o SINASC do DATASUS, o qual, possui dados a respeito de nascidos vivos estão separados por estado, e com temporalidade de 1994 a 2019. Entrtanto escolheu-se para a modelagem estatística apenas os estados do Sudeste (São Paulo, Rio de Janeiro, Espírito Santo e Minas Gerais) para limitar o contexto dos dados devido a grande quantidade e o periodo de 2010 a 2019, pois antes de 2010 menos dados eram oferecidos pela base.
 
 É importante salientar que por o git não suportar uma grande quantidade de dados no projeto, utilizou-se a ferramenta [DVC](https://dvc.org/doc/start), a qual possibilita a colocar os dados do projeto no google drive apenas incluindo uma referência com extensão .dvc no github. Com esta referência e comandos da aplicação é possível baixar os dados na máquina local.
 
@@ -63,28 +70,29 @@ Base de Dados | Endereço na Web | Resumo descritivo
 SINASC | [http://base1.org/ ](http://www2.datasus.gov.br/DATASUS/index.php?area=0205&id=6936&VObj=http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinasc/cnv/nv)| Base de dados do DATASUS sobre nascidos vivos.
 
 
-*O que descobriu sobre esse banco?
+- O que descobriu sobre esse banco?
 É possível utilizar as colunas cruzadas com os estados uma a uma pelo site. O PySUS surgiu como altenativa para fazer a coleta automatizada.
 
-*Quais as transformações e tratamentos (e.g., dados faltantes e limpeza) feitos?
+- Quais as transformações e tratamentos (e.g., dados faltantes e limpeza) feitos?
 Descoberta dos valores que correspondiam a valores nulos não intuitivos, através da leitura dos relatórios
 Dados inputados em variáveis numéricas NaN com o Iterative Imputer do sklearn
 Dados inputados em variáveis categóricas NaN pelo valor máximo
 One Hot encoding das variáveis categóricas
 
-*Por que este banco foi adotado?
+- Por que este banco foi adotado?
 Principal base de dados brasileira sobre nascidos vivos
 
-*Apresente aqui uma Análise Exploratória (inicial) sobre esta base.
+- Apresente aqui uma Análise Exploratória (inicial) sobre esta base.
 Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. Além disso foi necessário entender o relatório do SINASC para saber o significado de cada uma das variáveis, que ja estavam codificadas na base.
 
 # Ferramentas
 
-* Python e libs (Pysus, pandas…) para tratar dados e criar modelo
+* Python e libs (PySUS, pandas…) para tratar dados e criar modelo
 * DVC para fazer o storage dos dados 
 * React para desenvolver interface front-end
 * Fast API para servir os resultados para o front-end
-* Heroku para hospedar a aplicação e desta forma possuir uma URL Pública 
+* Streamlit para subir a aplicação de IA sem a necessidade de HTML
+* Heroku para hospedar as aplicações e desta forma possuir uma URL Pública 
 
 # Cronograma
 
@@ -115,13 +123,13 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 ├── LICENSE
 ├── README.md          <- apresentação do projeto
 │
-├── data
+├│
 │   ├── external       <- dados de terceiros
 │   ├── interim        <- dados intermediários, e.g., resultado de transformação
 │   ├── processed      <- dados finais usados para a modelagem
 │   └── raw            <- dados originais sem modificações
 │
-├── models             <- Pasta em que modelos treinados são salvos
+├── small_data             <- Dados que precisavam estar no GIT e não no DVC
 │ 
 ├── notebooks          <- Jupyter notebooks ou equivalentes
 │
@@ -166,28 +174,36 @@ Histograma de distribuição dos dados de entrada antes da criação dos one hot
 
 # Resultados
 
-## Matriz de Confusão
-Matriz de confusão avaliada no conjunto de teste
+## Sindrome de Down
 
 ![matriz_confusao](./assets/figures/matriz_confusao.png)
 
+## Cardiopatias Congênitas
 
-## Curva ROC
-Curva ROC avaliada no conjunto de teste
+![matriz_confusao](./assets/figures/matri)
 
-![roc_curev](./assets/figures/roc_curev.png)
+## Fendas Orais
+
+![matriz_confusao](./assets/figures/matri)
+
+## Anomalias em Membros
+
+![matriz_confusao](./assets/figures/matri)
+
+## Microcefalia
+
+![matriz_confusao](./assets/figures/matri)
+
+## Anomalias nas Paredes Abdominais
+
+![matriz_confusao](./assets/figures/matri)
+
+## Anomalias no Tubo Neural
+
+![matriz_confusao](./assets/figures/matri)
 
 
-## Importância das Features
-Importância das features de entrada segundo o algorítimo de Random Forest para a determinação das classes
-
-![feature_importance](./assets/figures/feature_importance.png)
-
-
-
-
-# Parcer técnico sobre do especialista sobre os resultados obtidos
-
+# Parecer Técnico
 
 O termo “síndrome” significa um conjunto de sinais e sintomas e “Down” designa o sobrenome do médico e pesquisador que primeiro descreveu a associação dos sinais característicos da pessoa com SD
  
@@ -203,3 +219,5 @@ aconselhamento dentro das normas estabelecidas pela comunidade médica, seguindo
   Cada vez mais a sociedade está se conscientizando de como é importante valorizar a diversidade humana e de como é fundamental oferecer equidade de oportunidades para que as pessoas com deficiência exerçam seu direito em conviver em comunidade. A sociedade está mais preparada para receber pessoas com síndrome de Down e existem relatos de experiências muito bem-sucedidas de inclusão.  
  
  E ainda, que utilize os pressupostos teóricos da clínica ampliada, da integralidade e do cuidado compartilhado, com vistas à humanização, autonomia e protagonismo dos sujeitos nas práticas de saúde. Neste sentido a clínica ampliada busca articular estes enfoques, reunindo os diferentes saberes com o objetivo de garantir o melhor resultado no cuidado, por meio da acolhida, do diálogo e da participação do sujeito no processo terapêutico.
+ 
+
