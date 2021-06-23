@@ -119,7 +119,6 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 # Project Organization
 
 ---
-`
 ├── LICENSE
 ├── README.md          <- apresentação do projeto
 │
@@ -137,8 +136,9 @@ Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. A
 │   └── README.md      <- instruções básicas de instalação/execução
 │
 └── assets             <- mídias usadas no projeto
-`
+
 ---
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
