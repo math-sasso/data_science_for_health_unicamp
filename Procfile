@@ -1,2 +1,2 @@
 
-web: sh setup.sh && streamlit run sindrome-down-app.py
+web: sh setup.sh && streamlit run datasus-app.py
