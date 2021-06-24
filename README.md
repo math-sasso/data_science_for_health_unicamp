@@ -215,4 +215,20 @@ aconselhamento dentro das normas estabelecidas pela comunidade médica, seguindo
  
  E ainda, que utilize os pressupostos teóricos da clínica ampliada, da integralidade e do cuidado compartilhado, com vistas à humanização, autonomia e protagonismo dos sujeitos nas práticas de saúde. Neste sentido a clínica ampliada busca articular estes enfoques, reunindo os diferentes saberes com o objetivo de garantir o melhor resultado no cuidado, por meio da acolhida, do diálogo e da participação do sujeito no processo terapêutico.
  
+ 
+## Conclusão
+Destacar as principais conclusões obtidas no desenvolvimento do projeto.
+
+Destacar os principais desafios enfrentados.
+
+Principais lições aprendidas.
+
+## Trabalhos Futuros
+O que poderia ser melhorado se houvesse mais tempo?
+
+## Referências Bibliográficas
+Lista de artigos, links e referências bibliográficas.
+
+Fiquem à vontade para escolher o padrão de referenciamento preferido pelo grupo.
+ 
 
