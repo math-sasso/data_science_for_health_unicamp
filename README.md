@@ -229,8 +229,15 @@ Principais lições aprendidas.
 O que poderia ser melhorado se houvesse mais tempo?
 
 ## Referências Bibliográficas
-Lista de artigos, links e referências bibliográficas.
 
-Fiquem à vontade para escolher o padrão de referenciamento preferido pelo grupo.
+[1] Cabral, JVB; Guimarães, ALS; Sobral Filho, DC; Santos, ACO. Mortality due to congenital heart disease in Pernambuco from 1996 to 2016. Rev. assoc. med bras.2020; 66(7):931-936.
+[2] Kale, PL et al. Ameaça à vida ao nascer: uma análise das causas de morte e estimativa de sobrevida de menores de cinco anos em coortes de nascidos vivos. Cad. Saúde Pública 2019; 35(7).
+[3] Luz, G.S. et al. Anomalias congênitas no estado do Rio Grande do Sul: análise de série temporal. Rev bras epidemiol. 2019; 22.
+[4] Ministério da Saúde (BR). Secretaria de Vigilância em Saúde. Anomalias congênitas no Brasil, 2010 a 2019: análise dos dados de sistemas de informação para o fortalecimento da vigilância e atenção em saúde. Brasília, DF: MS; 2021 [acesso 22 de junho. 2021]. Boletim Epidemiológico. V.52, fev. 2021. Disponível em: Boletim Epidemiológico
+[5] Ministério da Saúde (BR). Como nascem os brasileiros: captação e prevalência das anomalias congênitas. In: Saúde Brasil 2018: uma análise da situação de saúde e das doenças e agravos crônicos: desafios e perspectivas. Brasília, 2019.
+[6] Reis LV. Anomalias congênitas, identificadas ao nascimento, em filhos de mulheres adolescentes [tese]. São Paulo: Escola Paulista de Medicina. Universidade Federal de São Paulo; 2005.
+[7] Chen, Tianqi, and Carlos Guestrin. "Xgboost: A scalable tree boosting system." Proceedings of the 22nd acm sigkdd international conference on knowledge discovery and data mining. 2016.
+[8] Feurer, Matthias, et al. "Auto-sklearn 2.0: The next generation." arXiv preprint arXiv:2007.04074 (2020).
+[9] Pedregosa, Fabian, et al. "Scikit-learn: Machine learning in Python." the Journal of machine Learning research 12 (2011): 2825-2830.
  
 
