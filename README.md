@@ -1,16 +1,10 @@
-# data_science_for_health_unicamp
+# Projeto Perfil de morbidade de recém-nascido com anomalias congênitas no São Paulo entre 2010 a 2019.
 
-# Projeto `Perfil de morbidade de recém-nascido com anomalias congênitas no São Paulo entre 2010 a 2019.`
-
-# Project `Morbidity profile of newborns with congenital anomalies in São Paulo between 2010 and 2019.`
+# Project Morbidity profile of newborns with congenital anomalies in São Paulo between 2010 and 2019.
 
 # Apresentação
 
 [![Vídeo de Apresentação](https://raw.githubusercontent.com/math-sasso/data_science_for_health_unicamp/main/assets/figures/thumb.png)](https://www.youtube.com/watch?v=MLP84VGrqAU)
-
-[Vídeo de Apresentação](https://www.youtube.com/watch?v=MLP84VGrqAU)
-
-[Apresentação em Slides](https://docs.google.com/presentation/d/1IMYYK61wlXfC33Tz76plF4fKID0CAA_pgjMP1i0gsU4/edit?usp=sharing)
 
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação \f, oferecida no primeiro semestre de 2021, na Unicamp.
 
@@ -42,9 +36,17 @@ Projeto é motivado pela especialidade da Kedma na área de desenvolvimento infa
   - [Repositório](https://github.com/schafferjrdev/datasci4health-frontend)
   - [Repositório API](https://github.com/Estela01/data_science_for_health_unicamp_backend)
 
-**Primeiro vídeo de introdução**
+## Vídeos
 
-[link do video](https://www.youtube.com/watch?v=DN1tSBkntmY)
+**Vídeo da proposta**
+
+[Proposta](https://www.youtube.com/watch?v=DN1tSBkntmY)
+
+**Vídeo da Apresentação final**
+
+[Vídeo de Apresentação](https://www.youtube.com/watch?v=MLP84VGrqAU)
+
+[Apresentação em Slides](https://docs.google.com/presentation/d/1IMYYK61wlXfC33Tz76plF4fKID0CAA_pgjMP1i0gsU4/edit?usp=sharing)
 
 # Perguntas de Pesquisa
 
