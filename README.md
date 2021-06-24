@@ -57,19 +57,13 @@ A base de dados utilizada no problema em questão é o SINASC do DATASUS, o qual
 
 É importante salientar que por o git não suportar uma grande quantidade de dados no projeto, utilizou-se a ferramenta [DVC](https://dvc.org/doc/start), a qual possibilita a colocar os dados do projeto no google drive apenas incluindo uma referência com extensão .dvc no github. Com esta referência e comandos da aplicação é possível baixar os dados na máquina local.
 
-## Bases Estudadas mas Não Adotadas
-
-Base de Dados | Endereço na Web | Resumo descritivo
------ | ----- | -----
-Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre a base.
-
 ## Bases Estudadas e Adotadas
 
 A base utilizada foi o SINASC, entrtanto para fazer a coleta dos dados utilizou-se o pacote PySUS.
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
-SINASC | [http://base1.org/ ](http://www2.datasus.gov.br/DATASUS/index.php?area=0205&id=6936&VObj=http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinasc/cnv/nv)| Base de dados do DATASUS sobre nascidos vivos.
+SINASC | [http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinasc/cnv/nvuf.def](http://www2.datasus.gov.br/DATASUS/index.php?area=0205&id=6936&VObj=http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sinasc/cnv/nv)| Base de dados do DATASUS sobre nascidos vivos.
 
 
 - O que descobriu sobre esse banco?
@@ -86,6 +80,11 @@ Principal base de dados brasileira sobre nascidos vivos
 
 - Apresente aqui uma Análise Exploratória (inicial) sobre esta base.
 Visualização dos histogramas dos dados, valores faltantes e tipos dos dados. Além disso foi necessário entender o relatório do SINASC para saber o significado de cada uma das variáveis, que ja estavam codificadas na base.
+
+## Bases Estudadas mas Não Adotadas
+
+Desde o início, a única base analisada foi a base do SINASC
+
 
 # Ferramentas
 
