@@ -218,10 +218,13 @@ O aconselhamento Genético (AG) consiste em uma destas alternativas sendo o mais
   
 ## Conclusão
 
+O presente projeto se propôs a responder aos objetivos propostos de modo a favorecer a elaboração de um perfil de morbidade dos recém nascidos com anomalias congênitas no estado de São Paulo entre 2010 e 2019, conduzindo olhar ampliado para uma importante questão de saúde pública: a prevalência de anomalias congênitas por cidade. Portanto, instrumentos capazes de nortear e ajudar na elaboração políticas públicas auxiliam na elaboração de cuidados específicos além de delinear estratégias com ações voltadas às demandas populacionais, alinhadas com a identidade e particularidades de cada território que as abriga.
+
 Principais lições aprendidas: 
 
 * Deve-se haver uma sincronia e adaptação de vocabulário para criar projetos com profissionais de áreas distintas.
 * Dimensionar previamente o custo da disponibilização do projeto levando em consideração o tamanho do dataset.  Tivemos que deixar pontos relevantes de fora por questões de infraestrutura.
+* Utilização das diversas ferramentas para se criar uma aplicação de ciência de dados com recursos gratuítos e com a proporção de um projeto real.
 
 ## Trabalhos Futuros
 
