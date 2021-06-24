@@ -31,8 +31,10 @@ Projeto é motivado pela especialidade da Kedma na área de desenvolvimento infa
 
 - Aplicação de predição de anomalias com dados do SINASC: [preditor-anomalias](https://datasus-app.herokuapp.com/)
 
-- Aplicação completa com estatisticas do SINASC: [site](https://sinasc.netlify.app/#/)
-
+- Aplicação para visualização de dados do SINASC: 
+  - [Site](https://sinasc.netlify.app/#/)
+  - [Repositório](https://github.com/schafferjrdev/datasci4health-frontend)
+  - [Repositório API](https://github.com/Estela01/data_science_for_health_unicamp_backend)
 
 # Perguntas de Pesquisa
 
