@@ -1,8 +1,8 @@
 # data_science_for_health_unicamp
 
-# Projeto `Perfil de morbidade de recém-nascido com anomalias congênitas no Brasil entre 2010 a 2019.`
+# Projeto `Perfil de morbidade de recém-nascido com anomalias congênitas no São Paulo entre 2010 a 2019.`
 
-# Project `Morbidity profile of newborns with congenital anomalies in Brazil between 2010 and 2019.`
+# Project `Morbidity profile of newborns with congenital anomalies in São Paulo between 2010 and 2019.`
 
 # Apresentação
 
