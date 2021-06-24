@@ -6,6 +6,12 @@
 
 # Apresentação
 
+[![Vídeo de Apresentação](https://raw.githubusercontent.com/math-sasso/data_science_for_health_unicamp/main/assets/figures/thumb.png)](https://www.youtube.com/watch?v=MLP84VGrqAU)
+
+[Vídeo de Apresentação](https://www.youtube.com/watch?v=MLP84VGrqAU)
+
+[Apresentação em Slides](https://docs.google.com/presentation/d/1IMYYK61wlXfC33Tz76plF4fKID0CAA_pgjMP1i0gsU4/edit?usp=sharing)
+
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação \f, oferecida no primeiro semestre de 2021, na Unicamp.
 
 | Nome                             | RA     | Especialização |
