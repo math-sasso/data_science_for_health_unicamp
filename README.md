@@ -215,17 +215,25 @@ O termo “síndrome” significa um conjunto de sinais e sintomas e “Down” 
 A SD ou trissomia do 21 é uma condição humana geneticamente determinada, é a alteração cromossômica (cromossomopatia) mais comum em humanos e a principal causa de deficiência intelectual na população. A SD é um modo de estar no mundo que demonstra a diversidade humana. A presença do cromossomo 21 extra na constituição genética determina características físicas específicas e atraso no desenvolvimento. Sabe-se que as pessoas com SD quando atendidas e estimuladas adequadamente, têm potencial para uma vida saudável e plena inclusão social. No Brasil nasce uma criança com SD a cada 600 e 800 nascimentos, independente de etnia, gênero ou classe social.
 As diferenças entre as pessoas com SD, tanto do aspecto físico quanto de desenvolvimento, decorrem de aspectos genéticos individuais, intercorrências clínicas, nutrição, estimulação, educação, contexto familiar, social e meio ambiente. Apesar dessas diferenças, há um consenso da comunidade científica de que não se atribuem graus à SD. Um dado importante recorrente e atualmente descrito no boletim epidemiológico de 2021 revela que nos nascidos com síndrome de Down, um alto percentual de mães com idade avançada foi identificado. Acrescenta-se também a importância do índice ou escore APGAR, um teste feito no recém-nascido logo após o nascimento que avalia seu estado geral e vitalidade, que auxilia na identificação da necessidade de qualquer tipo de tratamento ou cuidado médico extra após o nascimento. Embora o índice de Apgar seja uma avaliação rotineira da vitalidade do bebê tem ganhado destaque como uma ferramenta útil para prever condição de saúde da mãe, sugere um estudo publicado no “JAMA Pediatrics”. Contudo, o fato de o recém-nascido não ter “tirado” uma “nota” alta não significa que ele terá algum atraso no desenvolvimento, mas permite inferir que o bebê precisou de mais ajuda na adaptação à vida fora do conforto do útero. Apesar das informações e experiência acumulada nos últimos anos, não é possível prever qual o grau de autonomia que uma criança com SD terá na sua vida adulta. O potencial a ser desenvolvido é sempre uma fronteira a ser cruzada diariamente. No entanto, é consenso para as equipes que atuam no cuidado da pessoa com SD que todo investimento em saúde, educação e inclusão social resulta em uma melhor qualidade de vida e autonomia. Para tanto é importante um conhecimento das relações dos indicadores de risco para manifestações sindrômicas assim como compreensão das possíveis desordens já instaladas bem como a prevenção destas.
 O aconselhamento Genético (AG) consiste em uma destas alternativas sendo o mais adotado o da American Society of Human Genetics (EPSTEIN, 1975). Segundo esta definição, trata-se do processo de comunicação que lida com problemas humanos associados com a ocorrência, ou risco de ocorrência, de uma doença genética em uma família, envolvendo a participação de uma ou mais pessoas treinadas para ajudar o indivíduo ou sua família a: 1) compreender os fatos médicos, incluindo o diagnóstico, provável curso da doença e as condutas disponíveis; 2) apreciar o modo como a hereditariedade contribui para a doença e o risco de recorrência para parentes específicos; 3) entender as alternativas para lidar com o risco de recorrência; 4) escolher o curso de ação que pareça apropriado em virtude do seu risco, objetivos familiares, padrões éticos e religiosos, atuando de acordo com essa decisão; 5) ajustar-se, da melhor maneira possível, à situação imposta pela ocorrência do distúrbio na família, bem como à perspectiva de recorrência do mesmo. No caso do AG as famílias com uma pessoa com SD, este processo é muitas vezes realizado pelo pediatra, médico assistente ou equipe aconselhamento dentro das normas estabelecidas pela comunidade médica, seguindo padrões éticos e técnicos adequados. Recomenda-se ainda que o cuidado com a saúde da pessoa com SD seja norteado pelas políticas públicas do Ministério da Saúde como a Política Nacional de Humanização, Política Nacional da Atenção Básica, Programas de Saúde da Criança e do Adolescente, Saúde da Mulher, do Homem, do Idoso, Saúde Mental e no Relatório Mundial sobre a Deficiência. Cada vez mais a sociedade está se conscientizando de como é importante valorizar a diversidade humana e de como é fundamental oferecer equidade de oportunidades para que as pessoas com deficiência exerçam seu direito em conviver em comunidade. A sociedade está mais preparada para receber pessoas com síndrome de Down e existem relatos de experiências muito bem-sucedidas de inclusão.
- 
- 
+  
 ## Conclusão
-Destacar as principais conclusões obtidas no desenvolvimento do projeto.
 
-Destacar os principais desafios enfrentados.
+Principais lições aprendidas: 
 
-Principais lições aprendidas.
+* Deve-se haver uma sincronia e adaptação de vocabulário para criar projetos com profissionais de áreas distintas.
+* Dimensionar previamente o custo da disponibilização do projeto levando em consideração o tamanho do dataset.  Tivemos que deixar pontos relevantes de fora por questões de infraestrutura.
 
 ## Trabalhos Futuros
-O que poderia ser melhorado se houvesse mais tempo?
+
+
+* Aplicação de técnicas de Ensemble para melhorar o resultado dos modelos
+* Aplicação de estratégias de Imbalanced Learning
+* Extensão do estudo para outras regiões do Brasil
+* Extração de outras estatísticas para o portal de anomalias
+* Prover os dados apresentados no portal para download e construir uma documentação para API.
+* Realizar teste de usabilidade do portal com mais profissionais da área para identificar possíveis necessidades.
+* Incluir mais sugestões de políticas públicas direcionadas ao quadro de anomalias congênitas da região.
+* Publicação de Artigo Científico
 
 ## Referências Bibliográficas
 
