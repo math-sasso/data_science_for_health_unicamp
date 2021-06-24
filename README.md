@@ -42,9 +42,9 @@ Projeto é motivado pela especialidade da Kedma na área de desenvolvimento infa
   - [Repositório](https://github.com/schafferjrdev/datasci4health-frontend)
   - [Repositório API](https://github.com/Estela01/data_science_for_health_unicamp_backend)
 
-**Video**
+**Primeiro vídeo de introdução**
 
-[link do video](https://www.youtube.com/watch?v=MLP84VGrqAU&ab_channel=GiancarloSchaffer)
+[link do video](https://www.youtube.com/watch?v=DN1tSBkntmY)
 
 # Perguntas de Pesquisa
 
